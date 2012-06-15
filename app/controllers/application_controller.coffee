@@ -13,7 +13,7 @@ class ApplicationController
       res.contentType('text/xml')
       res.render 'twilio_response', 
         layout : false
-        verb   : 'say'
+        verb   : 'Say'
         nouns  : 'Hello world!'
   # GET /sms-callback/:type
   @sms_callback = (req, res) ->
