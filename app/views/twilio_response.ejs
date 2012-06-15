@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>        
   <Response>
-    <<%- verb.capitalize() %>><%- nouns %></<%- verb.capitalize() %>>
+    <<%- verb.capitalize() %>>
+      <% if(typeof(nouns) == 'object'){ %>
+        <%- "Ici j'y" %>
+      <% } else { %> 
+        <%- nouns %>
+      <% } %>
+    </<%- verb.capitalize() %>>
   </Response>
