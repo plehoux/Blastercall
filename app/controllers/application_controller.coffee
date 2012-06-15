@@ -7,10 +7,9 @@ class ApplicationController
 
   # GET /voice-callback/:type
   @voice_callback = (req, res) ->
-    console.log "TARBARNAK"
-    console.log "#{req.params}"
-    console.log "#{key} : #{value}" for key,value of req.query 
-    global.socket.emit 'voice', type: "enemy"
+    if req.query.ApplicationSid == AP581d3685e6ae1ee2f8584fb991b69aa0
+      console.log "Valide request, emit to client!"
+      global.socket.emit 'voice', {type: req.params.type, params: req.query}
 
   # GET /sms-callback/:type
   @sms_callback = (req, res) ->
