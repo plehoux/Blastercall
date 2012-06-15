@@ -1,0 +1,11 @@
+/app/assets/*
+/app/views/*
+/public/*
+
+./Cakefile
+./Procfile
+./package.json
+./README.md
+
+./.git*
+./.git/*
