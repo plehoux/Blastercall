@@ -6,13 +6,13 @@ class ApplicationController
       view: 'index'
 
   # GET /callback/:type
-  @callback = (req, res) ->
+  @callback = (req, res) =>
     res.contentType('text/xml')
     if req.query.ApplicationSid is 'AP581d3685e6ae1ee2f8584fb991b69aa0'
       action = req.params.action
       type   = req.params.type
       if action is 'connect'
-        @gather()
+        @gather(res,action,type)
       else
         switch type
           when 'enemy'
@@ -21,10 +21,11 @@ class ApplicationController
                 type   : type
                 action : action
                 params : req.query
+              @gather(res,action,type)
           when 'player'
             console.log 'player-move' if action is 'move'
 
-  @gather = ->
+  @gather = (res,type,action)->
     global.socket?.emit 'action',
           type   : type
           action : action
