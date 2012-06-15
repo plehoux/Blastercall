@@ -8,6 +8,7 @@ class ApplicationController
   # GET /voice-callback/:type
   @voice_callback = (req, res) ->
     console.log "TARBARNAK"
+    console.log "#{req.params}"
     console.log "#{key} : #{value}" for key,value of req.params 
     global.socket.emit 'voice', type: "enemy"
 
