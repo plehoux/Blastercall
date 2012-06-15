@@ -9,7 +9,6 @@ class ApplicationController
   @voice_callback = (req, res) ->
     if req.query.ApplicationSid == 'AP581d3685e6ae1ee2f8584fb991b69aa0'
       console.log "Valide request, emit to client!"
-      console.log req.originalUrl
       global.socket.emit 'voice', {type: req.params.type, params: req.query}
       res.contentType('text/xml')
       res.render 'twilio_response', 
