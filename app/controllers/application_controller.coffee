@@ -12,7 +12,7 @@ class ApplicationController
       action = req.params.action
       type   = req.params.type
       if action is 'connect'
-        @gather(res,action,type)
+        @gather(req,res,action,type)
       else
         switch type
           when 'enemy'
@@ -21,11 +21,11 @@ class ApplicationController
                 type   : type
                 action : action
                 params : req.query
-              @gather(res,action,type)
+              @gather(req,res,action,type)
           when 'player'
             console.log 'player-move' if action is 'move'
 
-  @gather = (res,type,action)->
+  @gather = (req,res,type,action)->
     global.socket?.emit 'action',
           type   : type
           action : action
