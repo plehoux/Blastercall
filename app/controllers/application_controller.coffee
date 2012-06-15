@@ -7,7 +7,10 @@ class ApplicationController
 
   # GET /voice-callback/:type
   @voice_callback = (req, res) ->
-    global.socket.emit 'voice', type: req.params.type
+    global.socket.emit 'voice', 
+      req_params: req.params
+      req:req
+      res:res
 
   # GET /sms-callback/:type
   @sms_callback = (req, res) ->
