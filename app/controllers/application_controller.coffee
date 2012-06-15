@@ -8,7 +8,7 @@ class ApplicationController
   # GET /voice-callback/:type
   @voice_callback = (req, res) ->
     console.log "TARBARNAK"
-    console.log(r) for r of req
+    console.log(r) for r of req.params
     global.socket.emit 'voice', type: req.params
 
   # GET /sms-callback/:type

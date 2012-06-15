@@ -2,7 +2,7 @@ app = global.app
 
 # Game
 app.get '/', ApplicationController.index
-app.post '/voice-callback/:type', ApplicationController.voice_callback
+app.post '/voice-callback/enemy', ApplicationController.voice_callback
 app.post '/sms-callback/:type', ApplicationController.sms_callback
 
 # Error handling (No previous route found. Assuming it’s a 404)
