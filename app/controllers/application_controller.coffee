@@ -12,7 +12,7 @@ class ApplicationController
       action = req.params.action
       type   = req.params.type
       if action is 'connect'
-        @gather(req,res,action,type)
+        @gather(req,res,type,action)
       else
         switch type
           when 'enemy'
@@ -21,7 +21,7 @@ class ApplicationController
                 type   : type
                 action : action
                 params : req.query
-              @gather(req,res,action,type)
+              @gather(req,res,type,action)
           when 'player'
             console.log 'player-move' if action is 'move'
 
