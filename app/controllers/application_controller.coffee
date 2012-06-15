@@ -5,13 +5,13 @@ class ApplicationController
     res.render 'index',
       view: 'index'
 
-  # GET /voice-callback/
-  @voiceCallback = (req, res) ->
-    res.redirect '/'
+  # GET /voice-callback/:type
+  @voice_callback = (req, res) ->
+    global.socket.emit 'voice', type: req.params.type
 
-  # GET /sms-callback/
-  @smsCallback = (req, res) ->
-    res.redirect '/'
+  # GET /sms-callback/:type
+  @sms_callback = (req, res) ->
+    global.socket.emit 'sms', type: req.params.type
 
 
 # Exports

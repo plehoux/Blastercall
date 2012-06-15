@@ -1,0 +1,6 @@
+socket = io.connect 'http://localhost'
+socket.on 'voice', (data) ->
+  console.log "voice: #{data.type}"
+
+socket.on 'sms', (data) ->
+  console.log "sms: #{data.type}"

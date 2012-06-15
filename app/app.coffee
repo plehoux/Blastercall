@@ -5,6 +5,11 @@ app = global.app = module.exports = express.createServer()
 # Boot setup
 require "#{__dirname}/../config/boot"
 
+# Socket.io
+io = require('socket.io').listen app
+io.sockets.on 'connection', (socket) ->
+  global.socket = socket
+
 # Configuration
 app.configure ->
   app.use express.static "#{__dirname}/../public"
