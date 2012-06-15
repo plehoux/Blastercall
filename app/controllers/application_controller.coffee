@@ -8,8 +8,7 @@ class ApplicationController
   # GET /voice-callback/:type
   @voice_callback = (req, res) ->
     if req.query.ApplicationSid == 'AP581d3685e6ae1ee2f8584fb991b69aa0'
-      console.log global.socket
-      global.socket.emit 'voice', {type: req.params.type, params: req.query}
+      global.socket?.emit 'voice', {type: req.params.type, params: req.query}
       res.contentType('text/xml')
       res.render 'twilio_response', 
         layout : false
