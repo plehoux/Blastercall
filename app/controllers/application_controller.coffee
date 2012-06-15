@@ -9,9 +9,8 @@ class ApplicationController
   @voice_callback = (req, res) ->
     console.log "TARBARNAK"
     console.log(r) for r of res
-    console.log req.originalUrl
-    console.log req.query
-    console.log req.params 
+
+    console.log "#{key} : #{value}" for key,value of req.params 
     global.socket.emit 'voice', type: req.params
 
   # GET /sms-callback/:type
