@@ -8,7 +8,8 @@ require "#{__dirname}/../config/boot"
 # Socket.io
 io = require('socket.io').listen app
 io.configure ->
-  io.set 'transports', ['flashsocket', 'xhr-polling']
+  io.set("transports", ["xhr-polling"])
+  io.set("polling duration", 10)
 io.sockets.on 'connection', (socket) ->
   global.socket = socket
 
