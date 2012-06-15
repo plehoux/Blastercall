@@ -1,6 +1,3 @@
 socket = io.connect "http://#{window.location.host}"
-socket.on 'voice', (data) ->
+socket.on 'action', (data) ->
   console.log "#{key}: #{value}" for key,value of data.params
-
-socket.on 'sms', (data) ->
-  console.log "sms: #{data.type}"

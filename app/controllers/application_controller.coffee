@@ -12,18 +12,25 @@ class ApplicationController
       action = req.params.action
       type   = req.params.type
       if action is 'connect'
-        global.socket?.emit 'voice',
+        global.socket?.emit 'action',
           type   : type
+          action : action
           params : req.query
         res.render 'twilio_response', 
           layout : false
           verb   : 'Gather'
           nouns  : 
-            action : "#{req.header('Host')}/#{type}/#{if type is 'enemy' then 'drop' else 'move'}"
+            numDigits : 1
+            timeout   : 3600
+            action    : "#{req.header('Host')}/#{type}/#{if type is 'enemy' then 'drop' else 'move'}"
       else
         switch type
           when 'enemy'
-            console.log 'enemy-drop'  if action is 'drop'
+            if action is 'drop'
+              global.socket?.emit 'action',
+                type   : type
+                action : action
+                params : req.query
           when 'player'
             console.log 'player-move' if action is 'move'
 
