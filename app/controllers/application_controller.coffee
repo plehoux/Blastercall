@@ -22,7 +22,7 @@ class ApplicationController
           nouns  : 
             numDigits : 1
             timeout   : 3600
-            action    : "#{req.header('Host')}/#{type}/#{if type is 'enemy' then 'drop' else 'move'}"
+            action    : "/#{type}/#{if type is 'enemy' then 'drop' else 'move'}"
       else
         switch type
           when 'enemy'
