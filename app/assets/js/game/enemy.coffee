@@ -31,7 +31,6 @@ class Enemy
     snd.play()
     @bomb.addClass 'explode'
     @bomb.trigger 'explodes', [@coord]
-    @bomb = null
 
   checkChainReaction: (coord) ->
     return if coord.x == @coord.x
@@ -45,7 +44,7 @@ class Enemy
       setTimeout this.explode, 250
 
   defuse: ->
-    return unless @bomb
+    return unless @bomb && !@bomb.hasClass('defuse')
     clearInterval @timer
     snd = new Audio "wave/defuse2.wav"
     snd.play()

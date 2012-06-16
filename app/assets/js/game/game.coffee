@@ -70,7 +70,7 @@ class Game
     enemy.addBomb(coord)
     @game.append enemy.bomb
     enemy.bomb.on 'explodes', (e, coord) =>
-      # this.deleteBomb(id)
+      this.deleteBomb(id)
       this.onBombExplodes(coord)
 
   onBombExplodes: (coord) ->
@@ -78,13 +78,19 @@ class Game
       continue unless enemy.bomb
       enemy.checkChainReaction coord
 
+    console.log @player.collision(coord.x, coord.y, 250)
+    # if @player.collision(coord.x, coord.y)
+      # console.log 'yaa!'
+
   deleteBomb: (id) ->
     enemy = @enemies[id]
     return unless enemy.bomb
 
-    enemy.bomb.remove()
-    enemy.bomb = null
-    # console.log "#{@enemies[id].from} bomb removed!"
+    setTimeout ->
+      return unless enemy.bomb
+      enemy.bomb.remove()
+      enemy.bomb = null
+    , 1000
 
   tick: =>
     for id, enemy of @enemies
@@ -95,7 +101,7 @@ class Game
 
       if @player.collision(left, top)
         enemy.defuse()
-        # this.deleteBomb(id)
+        this.deleteBomb(id)
 
     @player.tick()
     requestAnimationFrame(@tick)
