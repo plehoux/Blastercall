@@ -1,5 +1,5 @@
 class Player extends GameObject
-
+  @DETECTION_POINTS_NBR = [1..11]
   constructor: ->
     super()
 
@@ -16,7 +16,9 @@ class Player extends GameObject
 
   # DOM management
   createElem: ->
-    super('player')
+    super('player','<div class="arrow"></div>')
+    console.log Player.DETECTION_POINTS_NBR
+    @elem.append("<span class='point_#{i}'></span>") for i in Player.DETECTION_POINTS_NBR
 
   # Keyboard management
   onKeyDown: (e) =>

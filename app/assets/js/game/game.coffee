@@ -29,9 +29,13 @@ class Game
     console.log "#{@enemies[id].from} move to #{@enemies[id].moveTo}!"
 
   tick: =>
+    for id,enemy of @enemies
+      enemy.tick()
+
     @player.tick()
-    enemy.tick() for id,enemy of @enemies
+    console.log @player.transform.x
     requestAnimationFrame(@tick)
+
 
   listen:->
     socket = io.connect "http://#{window.location.host}"
