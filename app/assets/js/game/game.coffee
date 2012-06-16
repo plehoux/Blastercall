@@ -14,6 +14,7 @@ class Game
       @moveEnemy '123', 1
     , 2
 
+
   addPlayer: ->
     @player = new Player
     @game.append @player.elem
@@ -36,7 +37,6 @@ class Game
       @game.append enemy.elem
 
     enemy.moveTo(coord)
-
     console.log "#{enemy.from} move to (#{coord.x}, #{coord.y})!"
 
   tick: =>

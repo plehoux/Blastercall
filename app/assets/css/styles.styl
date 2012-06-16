@@ -28,10 +28,10 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
   display: block
   position: absolute
   top: 0; left: 0
-  
+  opacity:0.75
+
 .player
   size: 50px 40px
-  opacity:0.75
 
   .arrow
     border-top: 20px solid transparent
@@ -82,8 +82,13 @@ span
   size: 50px
   line-height:50px
   text-align:center
-  border-radius:25px
+  border-radius:100%
   background-color:white
-  opacity:0.75
+
+  &.spawning
+    size: 10px
+    margin: 20px 0 0 20px
+    background-color: rgba(0,0,0,.2)
+    span { display: none }
 
 @import "layout"

@@ -7,8 +7,8 @@ class GameObject
     @createElem()
 
   # DOM management
-  createElem: (type,content)->
-    @elem = $("<div class='#{type}'>#{if content? then content else ''}</div>")
+  createElem: (type, content='') ->
+    @elem = $("<div class='#{type}'>#{content}</div>")
 
   tick:->
     this.setTransform()
