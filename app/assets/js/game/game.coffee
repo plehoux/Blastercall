@@ -35,7 +35,6 @@ class Game
       enemy.tick()
 
     @player.tick()
-    console.log @player.transform.x
     requestAnimationFrame(@tick)
 
 
