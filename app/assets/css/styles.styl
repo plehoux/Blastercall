@@ -111,7 +111,7 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
 
 
 // Player --------------------------------------------------------------------
-.player,.enemy
+.player, .bomb
   display: block
   position: absolute
   top: 0; left: 0
@@ -164,19 +164,48 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
     left:100%
 
 
-.enemy
-  size: 50px
-  line-height:50px
-  text-align:center
-  border-radius:100%
-  background-color:white
+.bomb
+  -webkit-backface-visibility: hidden
 
-  &.spawning
+  span
+    display: block
     size: 50px
-    background-color: rgba(0,0,0,.2)
-    span { display: none }
+    line-height:50px
+    text-align:center
+    border-radius:100%
+    background-color:white
+
+  // &:after
+  //   content: ''
+  //   display: block
+  //   position: absolute
+  //   top: 0; left: 0
+  //   width: 100%; height: 100%
+  //   border-radius: 100%
+  //   background-color: hotpink
+  // 
+  &.explode
+    opacity: 0
+    -webkit-transform: scale(2)
+    animation: explode .4s
+  
+  &.defuse
+    -webkit-transition: -webkit-transform .2s ease-in-out
+    -webkit-transform: rotateY(180deg)
 
 // Keyframes --------------------------------------------------------------------
+@keyframes explode
+  0%
+    opacity: 1
+    -webkit-transform: scale(1)
+
+  25%
+    -webkit-transform: scale(.5)
+
+  100%
+    opacity: 0
+    -webkit-transform: scale(2)
+
 @keyframes bgc
   0%
      background-color: #4caf61

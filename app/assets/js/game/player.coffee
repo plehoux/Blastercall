@@ -78,7 +78,7 @@ class Player extends GameObject
       if offset?
         x = offset.left
         y = offset.top
-        collision = Math.sqrt((x-cx)*(x-cx)+(y-cy)*(y-cy)) < Enemy.RADIUS/2
+        collision = Math.sqrt((x-cx)*(x-cx)+(y-cy)*(y-cy)) < Enemy.BOMB_RADIUS / 2
       break if collision
     return collision
 

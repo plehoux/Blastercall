@@ -1,31 +1,36 @@
-class Enemy extends GameObject
-  @RADIUS = 50
+class Enemy
+  @BOMB_RADIUS = 50
 
-  constructor:(from)->
-    @from        = from || "666-666-6666"
-    @hasMoved    = false
-    @currentZone = null 
-    super()
+  constructor: (from) ->
+    @from = from || "666-666-6666"
+    @bomb = null
 
-  # DOM management
-  createElem: ->
-    super('enemy', "<span>#{@from.slice(-4)}</span>")
+  addBomb: (coord) ->
+    countdown = 5
+    @bomb = $("<div class='bomb'></div>")
+    span = $("<span>#{countdown}</span>")
 
-  moveTo: (coord,zone) ->
-    @currentZone = zone
-    @elem.addClass 'spawning'
+    @bomb.append span
+    @bomb.css
+      left: coord.x
+      top: coord.y
 
-    setTimeout =>
-      @elem.removeClass 'spawning'
+    @timer = setInterval =>
+      if countdown <= 0
+        clearInterval @timer
+        this.explode()
+      else
+        countdown--
+        span.html countdown
     , 1000
 
-    @transform.x = coord.x
-    @transform.y = coord.y
+  explode: ->
+    @bomb.addClass 'explode'
+    @bomb = null
 
-  tick: ->
-    super()
+  defuse: ->
+    @bomb.addClass 'defuse'
+    clearInterval @timer
 
-  canCollide: ->
-    !@elem.hasClass 'spawning'
 
 window.Enemy = Enemy
