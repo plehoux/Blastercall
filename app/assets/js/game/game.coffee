@@ -41,12 +41,13 @@ class Game
 
   tick: =>
     for id,enemy of @enemies
+      enemy.tick()
+      continue unless enemy.canCollide()
       offset = enemy.elem.offset()
       if @player.collision(offset.left+Enemy.RADIUS/2,offset.top+Enemy.RADIUS/2)
         @player.elem.children('.arrow').css('border-left-color','#ed1a3b')
       else
         @player.elem.children('.arrow').css('border-left-color','#fff')
-      enemy.tick()
 
     @player.tick()
     requestAnimationFrame(@tick)
