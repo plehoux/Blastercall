@@ -24,10 +24,23 @@ class Enemy
         span.html countdown
     , 1000
 
-  explode: ->
+  explode: =>
+    clearInterval @timer
+
     @bomb.addClass 'explode'
     @bomb.trigger 'explodes', [@coord]
     @bomb = null
+
+  checkChainReaction: (coord) ->
+    return if coord.x == @coord.x
+    x = @coord.x
+    y = @coord.y
+    cx = coord.x
+    cy = coord.y
+
+    distance = Math.sqrt((x-cx)*(x-cx)+(y-cy)*(y-cy))
+    if distance < 100
+      setTimeout this.explode, 250
 
   defuse: ->
     @bomb.addClass 'defuse'

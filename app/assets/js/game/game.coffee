@@ -20,12 +20,11 @@ class Game
     @tick()
     @generateBullets()
 
-    [1..2].forEach (i) =>
+    [1..20].forEach (i) =>
       setTimeout =>
         @addEnemy i, "#{i}-418-1234"
-        @addBomb i, 2
-        # @addBomb i, this.random(1, 9)
-      , 1000 * (i*2)
+        @addBomb i, this.random(1, 9)
+      , 1000 * i
 
   random: (min, max) ->
     min + (Math.random() * (max - min))
@@ -69,7 +68,9 @@ class Game
     enemy.bomb.on 'explodes', this.onBombExpldoes
 
   onBombExpldoes: (e, coord) =>
-
+    for id, enemy of @enemies
+      continue unless enemy.bomb
+      enemy.checkChainReaction coord
 
   deleteBomb: (id) ->
     enemy = @enemies[id]
