@@ -1,18 +1,18 @@
 class Enemy extends GameObject
+  @RADIUS = 51
+
   constructor:(from)->
-    @from        = from || "666-666-6666"
+    @from = from || "666-666-6666"
+    @hasMoved = false
     super()
-    @moveTo      = null
-    @transform.x = Math.floor(Math.random() * 1280) + 1
-    @transform.y = Math.floor(Math.random() * 768 ) + 1
 
   # DOM management
   createElem: ->
-    super('enemy',@from.slice(-4))
+    super('enemy', @from.slice(-4))
 
-  # moveTo: (coord) ->
-    # @transform.x = coord.x
-    # @transform.y = coord.y
+  moveTo: (coord) ->
+    @transform.x = coord.x
+    @transform.y = coord.y
 
   tick: ->
     super()

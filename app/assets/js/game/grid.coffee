@@ -8,12 +8,14 @@ class Grid
     position = $zone.position()
     bounds =
       top: position.top
-      right: position.left + $zone.width()
-      bottom: position.top + $zone.height()
+      right: position.left + $zone.width() - Enemy.RADIUS
+      bottom: position.top + $zone.height() - Enemy.RADIUS
       left: position.left
 
     randX = this.random(bounds.left, bounds.right)
     randY = this.random(bounds.top, bounds.bottom)
+
+    { x: randX, y: randY }
 
   random: (min, max) ->
     min + (Math.random() * (max - min))
