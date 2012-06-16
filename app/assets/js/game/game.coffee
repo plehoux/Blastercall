@@ -4,12 +4,14 @@ class Game
   constructor: ->
     @game   = $('#game')
     @status = $('#status')
+
     $(document).keypress((event)=>
         @play() if event.which == 32
       )
     $('#status').click (event)=>
         @play()
         event.preventDefault()
+
     @state   = 'TITLE_SCREEN'
     @enemies = {}
     @bombs = {}
@@ -17,11 +19,16 @@ class Game
     @addPlayer()
     @tick()
     @generateBullets()
-    @addEnemy '123', '418-418-4184'
 
-    setTimeout =>
-      @addBomb '123', 3
-    , 2000
+    [1..2].forEach (i) =>
+      setTimeout =>
+        @addEnemy i, "#{i}-418-1234"
+        @addBomb i, 2
+        # @addBomb i, this.random(1, 9)
+      , 1000 * (i*2)
+
+  random: (min, max) ->
+    min + (Math.random() * (max - min))
 
   play:->
     unless @state is "GAME_ON"
@@ -45,12 +52,12 @@ class Game
 
   addEnemy: (id,from)->
     @enemies[id] = new Enemy(from)
-    console.log "#{from} just connected!"
+    # console.log "#{from} just connected!"
 
   deleteEnemy: (id)->
     @enemies[id].elem.remove()
     delete @enemies[id]
-    console.log "#{@enemies[id].from} just disconnected!"
+    # console.log "#{@enemies[id].from} just disconnected!"
 
   addBomb: (id, zone)->
     enemy = @enemies[id]
@@ -59,15 +66,18 @@ class Game
     coord = Grid.getCoordinate(zone)
     enemy.addBomb(coord)
     @game.append enemy.bomb
+    enemy.bomb.on 'explodes', this.onBombExpldoes
 
-    console.log "#{enemy.from} added a bomb to (#{coord.x}, #{coord.y})!"
+  onBombExpldoes: (e, coord) =>
+
 
   deleteBomb: (id) ->
     enemy = @enemies[id]
     return unless enemy.bomb
+
     enemy.bomb.remove()
     enemy.bomb = null
-    console.log "#{@enemies[id].from} bomb removed!"
+    # console.log "#{@enemies[id].from} bomb removed!"
 
   tick: =>
     for id, enemy of @enemies
@@ -78,6 +88,7 @@ class Game
 
       if @player.collision(left, top)
         enemy.defuse()
+
     @player.tick()
     requestAnimationFrame(@tick)
 
@@ -95,5 +106,5 @@ class Game
           @addBomb(params.CallSid, params.Digits)
 
   generateBullets: ->
-    
+
 new Game

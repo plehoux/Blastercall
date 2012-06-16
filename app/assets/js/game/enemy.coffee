@@ -5,15 +5,15 @@ class Enemy
     @from = from || "666-666-6666"
     @bomb = null
 
-  addBomb: (coord) ->
+  addBomb: (@coord) ->
     countdown = 5
-    @bomb = $("<div class='bomb'></div>")
+    @bomb = $("<div class='bomb' data-from='#{@from}'></div>")
     span = $("<span>#{countdown}</span>")
 
     @bomb.append span
     @bomb.css
-      left: coord.x
-      top: coord.y
+      left: @coord.x
+      top: @coord.y
 
     @timer = setInterval =>
       if countdown <= 0
@@ -26,6 +26,7 @@ class Enemy
 
   explode: ->
     @bomb.addClass 'explode'
+    @bomb.trigger 'explodes', [@coord]
     @bomb = null
 
   defuse: ->
