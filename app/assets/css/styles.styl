@@ -106,7 +106,7 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
         border-right: none
 
 // Player --------------------------------------------------------------------
-.player,.enemy
+.player, .bomb
   display: block
   position: absolute
   top: 0; left: 0
@@ -158,14 +158,12 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
     top:50%
     left:100%
 
-.enemy
-  size: 50px
-  line-height:50px
-  text-align:center
-  border-radius:100%
-  background-color:white
 
-  &.spawning
+.bomb
+  -webkit-backface-visibility: hidden
+
+  span
+    display: block
     size: 50px
     line-height:50px
     text-align:center
@@ -184,8 +182,7 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
   &.defuse
     -webkit-transition: -webkit-transform .2s ease-in-out
     -webkit-transform: rotateY(180deg)
-    background-color: rgba(0,0,0,.2)
-    span { display: none }
+
 
 // Keyframes --------------------------------------------------------------------
 @keyframes explode
