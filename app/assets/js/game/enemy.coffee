@@ -27,7 +27,8 @@ class Enemy
   explode: =>
     return unless @bomb
     clearInterval @timer
-
+    snd = new Audio "wave/explosion.wav"
+    snd.play()
     @bomb.addClass 'explode'
     @bomb.trigger 'explodes', [@coord]
     @bomb = null
@@ -46,7 +47,7 @@ class Enemy
   defuse: ->
     return unless @bomb
     clearInterval @timer
-    snd = new Audio "wave/defuse.wav"
+    snd = new Audio "wave/defuse2.wav"
     snd.play()
     @bomb.addClass 'defuse'
 
