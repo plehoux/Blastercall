@@ -79,9 +79,8 @@ class Game
       continue unless enemy.bomb
       enemy.checkChainReaction coord
 
-    console.log @player.collision(coord.x, coord.y, 250)
-    # if @player.collision(coord.x, coord.y)
-      # console.log 'yaa!'
+    if @player.collision(coord.x, coord.y, 250)
+      @player.elem.addClass 'dead'
 
   deleteBomb: (id) ->
     enemy = @enemies[id]
