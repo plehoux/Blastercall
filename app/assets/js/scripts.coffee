@@ -1,4 +1,5 @@
 #= require_tree ./utils
+#= require ./game/player
 #= require ./game/game
 
 socket = io.connect "http://#{window.location.host}"
