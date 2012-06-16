@@ -7,6 +7,7 @@ class Game
     @listen()
     @addPlayer()
     @tick()
+    @addEnemy('asd','934-7234')
 
   addPlayer: ->
     @player = new Player
@@ -19,7 +20,9 @@ class Game
 
   deleteEnemy: (id)->
     console.log "#{@enemies[id].from} just disconnected!"
+    @enemies[id].elem.remove()
     delete @enemies[id]
+
 
   moveEnemy: (id,moveTo)->
     @enemies[id].moveTo = moveTo
@@ -35,7 +38,6 @@ class Game
     socket.on 'action', (data) =>
       action  = data.action
       params  = data.params
-      enemies = window.enemies
       switch action
         when 'connect'
           @addEnemy(params.CallSid,params.From)

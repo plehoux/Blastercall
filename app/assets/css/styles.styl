@@ -32,15 +32,20 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
   display: block
   position: absolute
   top: 0; left: 0
-
+  opacity:0.75
+  
 .player
   size: 0
   border-top: 20px solid transparent
   border-bottom: 20px solid transparent
-  border-left: 50px solid black
+  border-left: 50px solid white
+  z-index:999
 
 .enemy
   size: 50px
-  background-color: grey
+  line-height:50px
+  text-align:center
+  border-radius:25px
+  background-color:white
 
 @import "layout"
