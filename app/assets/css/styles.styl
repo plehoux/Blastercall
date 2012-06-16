@@ -63,6 +63,10 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
     line-height: .75
     text-align: center
     text-transform: uppercase
+    opacity: 0
+    transition: opacity .2s ease 
+    
+    &.show { opacity: 1 }
     
     small
       font-size: 24
