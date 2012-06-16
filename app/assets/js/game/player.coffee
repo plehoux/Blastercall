@@ -53,7 +53,7 @@ class Player extends GameObject
     @transform.y += vectorY
 
   setTransform: ->
-    # @elem.css '-webkit-transform': "translate3d(#{@transform.x}px, #{@transform.y}px, 0) rotate(#{@transform.rotation})"
+    @elem.css '-webkit-transform': "translate3d(#{@transform.x}px, #{@transform.y}px, 0) rotate(#{@transform.rotation})"
 
 
 window.Player = Player
