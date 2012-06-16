@@ -1,5 +1,5 @@
 class Enemy extends GameObject
-  @RADIUS = 51
+  @RADIUS = 50
 
   constructor:(from)->
     @from = from || "666-666-6666"

@@ -1,8 +1,9 @@
 class Player extends GameObject
   @DETECTION_POINTS_NBR = [1..11]
+  @NBR_OF_LIFE          = 3
   constructor: ->
     super()
-
+    @life = Player.NBR_OF_LIFE
     @window = $(window)
     @speed = 0
     @keysPressed =
@@ -76,7 +77,16 @@ class Player extends GameObject
     @transform.y = -50 if @transform.y > @window.height()
     @transform.y = @window.height() if @transform.y < -50
 
-  collision:->
+  collision:(cx,cy)->
+    for i in Player.DETECTION_POINTS_NBR
+      offset = @elem.children(".point_#{i}").offset()
+      if offset?
+        x = offset.left
+        y = offset.top
+        collision = Math.sqrt((x-cx)*(x-cx)+(y-cy)*(y-cy)) < Enemy.RADIUS/2
+      break if collision
+    console.log collision
+    return collision
 
 
 window.Player = Player

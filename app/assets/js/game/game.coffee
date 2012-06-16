@@ -8,6 +8,12 @@ class Game
     @addPlayer()
     @tick()
 
+    @addEnemy '123', '418-418-4184'
+
+    setTimeout =>
+      @moveEnemy '123', 1
+    , 2
+
   addPlayer: ->
     @player = new Player
     @game.append @player.elem
@@ -35,11 +41,15 @@ class Game
 
   tick: =>
     for id,enemy of @enemies
+      offset = enemy.elem.offset()
+      if @player.collision(offset.left+Enemy.RADIUS/2,offset.top+Enemy.RADIUS/2)
+        @player.elem.children('.arrow').css('border-left-color','#ed1a3b')
+      else
+        @player.elem.children('.arrow').css('border-left-color','#fff')
       enemy.tick()
 
     @player.tick()
     requestAnimationFrame(@tick)
-
 
   listen:->
     socket = io.connect "http://#{window.location.host}"
