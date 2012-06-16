@@ -3,9 +3,10 @@ class Player extends GameObject
   @NBR_OF_LIFE          = 1
   constructor: ->
     super()
-    @life = Player.NBR_OF_LIFE
-    @window = $(window)
-    @speed = 0
+    @life        = Player.NBR_OF_LIFE
+    @points      = 0
+    @window      = $(window)
+    @speed       = 0
     @keysPressed =
       left: false
       right: false

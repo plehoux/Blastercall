@@ -23,7 +23,6 @@ class Game
 
     [1..20].forEach (i) =>
       setTimeout =>
-        console.log 2
         @addEnemy i, "#{i}-418-1234"
         @addBomb i, this.random(1, 9)
       , 1000 * i
@@ -101,8 +100,10 @@ class Game
       left = offset.left + Enemy.BOMB_RADIUS / 2
       top = offset.top + Enemy.BOMB_RADIUS / 2
 
-      if @player.collision(left, top)
-        enemy.defuse()
+      if @player.collision(left, top) and !enemy.bomb.hasClass('defuse')
+        enemy.defuse() 
+        @player.points++
+        console.log "aaa-#{@player.points}"
         this.deleteBomb(id)
 
     @player.tick()
