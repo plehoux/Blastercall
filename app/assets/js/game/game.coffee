@@ -8,28 +8,26 @@ class Game
     @addPlayer()
     @tick()
 
-
-  # Player management
   addPlayer: ->
     @player = new Player
     @game.append @player.elem
 
   addEnemy: (id,from)->
     console.log "#{from} just connected!"
-    enemies[id] = new Enemy(from)
+    @enemies[id] = new Enemy(from)
+    @game.append @enemies[id].elem
 
   deleteEnemy: (id)->
-    console.log "#{enemies[id].from} just disconnected!"
-    delete enemies[id]
+    console.log "#{@enemies[id].from} just disconnected!"
+    delete @enemies[id]
 
   moveEnemy: (id,moveTo)->
-    enemies[id].moveTo = moveTo
-    console.log "#{enemies[id].from} move to #{enemies[id].moveTo}!"
+    @enemies[id].moveTo = moveTo
+    console.log "#{@enemies[id].from} move to #{@enemies[id].moveTo}!"
 
-  # Render management
   tick: =>
     @player.tick()
-    enemy.tick() for enemy in @enemies
+    enemy.tick() for id,enemy of @enemies
     requestAnimationFrame(@tick)
 
   listen:->

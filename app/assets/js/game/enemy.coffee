@@ -1,4 +1,4 @@
-class Enemy
+class Enemy extends GameObject
   constructor:(from)->
     super()
     @from        = from || "666-666-6666"
