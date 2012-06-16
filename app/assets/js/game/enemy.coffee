@@ -10,7 +10,7 @@ class Enemy
   createElem: ->
     super('enemy')
 
-  thick: ->
-    false
+  tick: ->
+    super()
 
 window.Enemy = Enemy

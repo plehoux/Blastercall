@@ -3,9 +3,11 @@ window.enemies = {}
 class Game
   constructor: ->
     @game = $('#game')
+    @enemies = {}
     @listen()
     @addPlayer()
     @tick()
+
 
   # Player management
   addPlayer: ->
@@ -27,7 +29,7 @@ class Game
   # Render management
   tick: =>
     @player.tick()
-    #enemy.tick() for enemy in @enemies
+    enemy.tick() for enemy in @enemies
     requestAnimationFrame(@tick)
 
   listen:->

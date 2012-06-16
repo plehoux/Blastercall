@@ -10,6 +10,9 @@ class GameObject
   createElem: (type)->
     @elem = $("<div class='#{type}'></div>")
 
+  tick:->
+    this.setTransform()
+
   setTransform: ->
     @elem.css '-webkit-transform': "translate3d(#{@transform.x}px, #{@transform.y}px, 0) rotate(#{@transform.rotation}deg)"
 

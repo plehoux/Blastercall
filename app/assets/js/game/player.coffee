@@ -41,9 +41,8 @@ class Player extends GameObject
     this.turn(1) if @keysPressed.right
     this.speedUp() if @keysPressed.up
     this.speedDown() if !@keysPressed.up
-
-    this.setTransform()
     this.move()
+    super()
 
   turn: (increment) ->
     @transform.rotation += increment * 8
