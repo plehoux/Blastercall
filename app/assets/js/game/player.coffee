@@ -45,15 +45,12 @@ class Player extends GameObject
     @transform.rotation += increment * 3
 
   move: (increment) ->
+    console.log @transform.rotation
     angle = @transform.rotation - 90
     vectorX = Math.cos(angle * Math.PI/180)
     vectorY = Math.sin(angle * Math.PI/180)
 
     @transform.x += vectorX
     @transform.y += vectorY
-
-  setTransform: ->
-    @elem.css '-webkit-transform': "translate3d(#{@transform.x}px, #{@transform.y}px, 0) rotate(#{@transform.rotation})"
-
 
 window.Player = Player

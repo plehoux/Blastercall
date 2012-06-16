@@ -1,5 +1,6 @@
-class Game
+window.enemies = {}
 
+class Game
   constructor: ->
     @game = $('#game')
     @listen()
@@ -11,31 +12,36 @@ class Game
     @player = new Player
     @game.append @player.elem
 
+  addEnemy: (id,from)->
+    console.log "#{from} just connected!"
+    enemies[id] = new Enemy(from)
+
+  deleteEnemy: (id)->
+    console.log "#{enemies[id].from} just disconnected!"
+    delete enemies[id]
+
+  moveEnemy: (id,moveTo)->
+    enemies[id].moveTo = moveTo
+    console.log "#{enemies[id].from} move to #{enemies[id].moveTo}!"
+
   # Render management
   tick: =>
     @player.tick()
-    requestAnimationFrame(this.tick)
+    enemy.tick() for enemy in @enemies
+    requestAnimationFrame(@tick)
 
   listen:->
     socket = io.connect "http://#{window.location.host}"
-    socket.on 'action', (data) ->
+    socket.on 'action', (data) =>
       action  = data.action
       params  = data.params
       enemies = window.enemies
       switch action
         when 'connect'
-          console.log "#{params.From} just connected!"
-          enemies[params.CallSid] = 
-            from   : params.From
-            x      : 0
-            y      : 0
-            moveTo : null
+          @addEnemy(params.CallSid,params.From)
         when 'disconnect'
-          console.log "#{params.From} just disconnected!"
-          delete enemies[params.CallSid]
+          @deleteEnemy(params.CallSid)
         when 'move'
-          enemies[params.CallSid].moveTo = params.Digits
-          console.log enemies[params.CallSid].moveTo
-
+          @moveEnemy(params.CallSid,params.Digits)
 
 new Game
