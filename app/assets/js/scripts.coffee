@@ -8,15 +8,16 @@ socket.on 'action', (data) ->
     when 'connect'
       console.log "#{params.From} just connected!"
       enemies[params.CallSid] = 
-        from : params.From
-        x    : 1
-        y    : 1
+        from   : params.From
+        x      : 0
+        y      : 0
+        moveTo : null 
     when 'disconnect'
       console.log "#{params.From} just disconnected!"
       delete enemies[params.CallSid]
     when 'move'
-      enemies[params.CallSid].x++
-      enemies[params.CallSid].y++
-      console.log enemies[params.CallSid].x
+      console.log("#{k}:#{v}")for k,v of params
+      enemies[params.CallSid].moveTo = 2
+      console.log enemies[params.CallSid].moveTo
 #= require_tree ./utils
 #= require ./game/game
