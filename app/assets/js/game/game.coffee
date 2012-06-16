@@ -4,6 +4,7 @@ class Game
   constructor: ->
     @game   = $('#game')
     @status = $('#status')
+    @ennemiesLength = 0
 
     $(document).keypress((event)=>
         @play() if event.which == 32
@@ -52,11 +53,13 @@ class Game
 
   addEnemy: (id,from)->
     @enemies[id] = new Enemy(from)
+    $('#nb_players').html(@ennemiesLength++)
     # console.log "#{from} just connected!"
 
   deleteEnemy: (id)->
     @enemies[id].elem.remove()
     delete @enemies[id]
+    $('#nb_players').html(@ennemiesLength--)
     # console.log "#{@enemies[id].from} just disconnected!"
 
   addBomb: (id, zone)->
