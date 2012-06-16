@@ -3,18 +3,25 @@ window.enemies = {}
 class Game
   constructor: ->
     @game = $('#game')
+    @status = $('#status')
+    $(document).one('keypress',(event)=>
+        @play() if event.which == 32
+      )
+    @status.children('small').click (event)=>
+      @play()
+      event.preventDefault()
+    @state = 'TITLE_SCREEN'
     @enemies = {}
     @listen()
     @addPlayer()
     @tick()
     @generateBullets()
 
-    @addEnemy '123', '418-418-4184'
+  play:->
+    @hideStatus()
 
-    setTimeout =>
-      @moveEnemy '123', 1
-    , 2
-
+  hideStatus:->
+    @status.hide()
 
   addPlayer: ->
     @player = new Player

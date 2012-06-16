@@ -4,6 +4,8 @@ class ApplicationController
   @index = (req, res) ->
     res.render 'index',
       view: 'index'
+      title: 'Blastercall'
+      subtitle: 'A game of call' 
 
   # GET /callback/:type
   @callback = (req, res) =>

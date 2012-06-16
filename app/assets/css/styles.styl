@@ -51,6 +51,7 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
   overflow: hidden
   
   #status
+    z-index:999
     background-color: #fff
     position: absolute
     top: 31%; left: 0
@@ -67,6 +68,10 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
       font-size: 24
       font-weight: lighter
       letter-spacing: 8px
+      cursor: pointer
+
+      span
+        color:hotpink
   
   .numpad
     size: 100%
@@ -76,8 +81,8 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
 
     li
       position: relative
-      border-right: 1px solid rgba(255,255,255,.5)
-      border-bottom: 1px solid rgba(255,255,255,.5)
+      border-right: 1px solid rgba(255,255,255,.3)
+      border-bottom: 1px solid rgba(255,255,255,.3)
       display: block
       float: left
       width: 33.333333333333%
@@ -114,7 +119,7 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
     border-top: 20px solid transparent
     border-bottom: 20px solid transparent
     border-left: 50px solid white
-    z-index:999
+    z-index:99
     position:absolute
   span
     size:1px
