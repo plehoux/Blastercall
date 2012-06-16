@@ -17,6 +17,6 @@ socket.on 'action', (data) ->
     when 'move'
       enemies[params.CallSid].x++
       enemies[params.CallSid].y++
-
+      console.log enemies[params.CallSid].x
 #= require_tree ./utils
 #= require ./game/game
