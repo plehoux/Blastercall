@@ -2,7 +2,7 @@ window.enemies = {}
 
 class Game
   constructor: ->
-    @game = $('#game')
+    @game   = $('#game')
     @status = $('#status')
     $(document).one('keypress',(event)=>
         @play() if event.which == 32
@@ -10,29 +10,32 @@ class Game
     @status.children('small').click (event)=>
       @play()
       event.preventDefault()
-    @state = 'TITLE_SCREEN'
+    @state   = 'TITLE_SCREEN'
     @enemies = {}
     @listen()
     @addPlayer()
     @tick()
     @generateBullets()
+    @addEnemy '123', '418-418-4184'
+
+    setTimeout =>
+      @moveEnemy '123', 3
+    , 2000
 
   play:->
     @hideStatus()
 
   hideStatus:->
-    @status.hide()
+    @status.removeClass('show')
 
   addPlayer: ->
     @player = new Player
     @game.append @player.elem
 
   addEnemy: (id,from)->
-    # console.log "#{from} just connected!"
     @enemies[id] = new Enemy(from)
 
   deleteEnemy: (id)->
-    # console.log "#{@enemies[id].from} just disconnected!"
     @enemies[id].elem.remove()
     delete @enemies[id]
 
@@ -46,22 +49,29 @@ class Game
     enemy.moveTo(coord,zone)
     console.log "#{enemy.from} move to (#{coord.x}, #{coord.y})!"
 
-
   tick: =>
-    for id,enemy of @enemies
-      enemy.tick()
-      continue unless enemy.canCollide()
-      offset = enemy.elem.offset()
-      if @player.collision(offset.left+Enemy.RADIUS/2,offset.top+Enemy.RADIUS/2)
-        @player.life--
-        enemy.elem.remove()
-        enemy.hasMoved    = false
-        enemy.currentZone = null
-        @addEnemy '123', '418-418-4184'
-        setTimeout =>
-          @moveEnemy '123', 1
-        , 2
-    @player.tick()
+    unless @player.life <= 0
+      for id,enemy of @enemies
+        enemy.tick()
+        continue unless enemy.canCollide()
+        offset = enemy.elem.offset()
+        if @player.collision(offset.left+Enemy.RADIUS/2,offset.top+Enemy.RADIUS/2)
+          @player.life--
+          enemy.elem.remove()
+          enemy.hasMoved    = false
+          enemy.currentZone = null
+          @addEnemy '123', '418-418-4184'
+          setTimeout =>
+            @moveEnemy '123', 1
+          , 2
+      @player.tick()
+    else
+      @status.html """
+        Gameover<br>
+        <small>You made 999 points.</small>
+      """
+      @status.addClass('show')
+      #LOOSE
     requestAnimationFrame(@tick)
 
   listen:->
@@ -79,5 +89,4 @@ class Game
 
   generateBullets: ->
     
-
 new Game
