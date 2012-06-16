@@ -88,7 +88,6 @@ class Player extends GameObject
         y = offset.top
         collision = Math.sqrt((x-cx)*(x-cx)+(y-cy)*(y-cy)) < Enemy.RADIUS/2
       break if collision
-    console.log collision
     return collision
 
 

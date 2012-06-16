@@ -36,7 +36,7 @@ class Game
       enemy.hasMoved = true
       @game.append enemy.elem
 
-    enemy.moveTo(coord)
+    enemy.moveTo(coord,zone)
     console.log "#{enemy.from} move to (#{coord.x}, #{coord.y})!"
 
   tick: =>
@@ -45,10 +45,14 @@ class Game
       continue unless enemy.canCollide()
       offset = enemy.elem.offset()
       if @player.collision(offset.left+Enemy.RADIUS/2,offset.top+Enemy.RADIUS/2)
-        @player.elem.children('.arrow').css('border-left-color','#ed1a3b')
-      else
-        @player.elem.children('.arrow').css('border-left-color','#fff')
-
+        @player.life--
+        enemy.elem.remove()
+        enemy.hasMoved    = false
+        enemy.currentZone = null
+        @addEnemy '123', '418-418-4184'
+        setTimeout =>
+          @moveEnemy '123', 1
+        , 2
     @player.tick()
     requestAnimationFrame(@tick)
 
