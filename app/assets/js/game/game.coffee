@@ -7,10 +7,6 @@ class Game
     @listen()
     @addPlayer()
     @tick()
-    @addEnemy('asd','934-7234')
-
-    @addEnemy '123', '418-418-4184'
-    @moveEnemy '123', 3
 
   addPlayer: ->
     @player = new Player
@@ -19,7 +15,6 @@ class Game
   addEnemy: (id,from)->
     console.log "#{from} just connected!"
     @enemies[id] = new Enemy(from)
-    @game.append @enemies[id].elem
 
   deleteEnemy: (id)->
     console.log "#{@enemies[id].from} just disconnected!"
@@ -27,8 +22,16 @@ class Game
     delete @enemies[id]
 
   moveEnemy: (id, zone)->
-    @enemies[id].moveTo = Grid.getCoordinate(zone)
-    console.log "#{@enemies[id].from} move to #{@enemies[id].moveTo}!"
+    enemy = @enemies[id]
+    coord = Grid.getCoordinate(zone)
+
+    if !enemy.hasMoved
+      enemy.hasMoved = true
+      @game.append enemy.elem
+
+    enemy.moveTo(coord)
+
+    console.log "#{enemy.from} move to (#{coord.x}, #{coord.y})!"
 
   tick: =>
     @player.tick()
