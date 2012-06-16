@@ -52,8 +52,8 @@ class Player extends GameObject
     @transform.rotation += increment * 8
 
   speedUp: ->
-    if @speed >= 10
-      @speed = 10
+    if @speed >= 12
+      @speed = 12
       return
 
     @speed += .2

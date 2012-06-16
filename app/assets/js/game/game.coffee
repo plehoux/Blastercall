@@ -4,12 +4,14 @@ class Game
   constructor: ->
     @game   = $('#game')
     @status = $('#status')
-    $(document).one('keypress',(event)=>
-        @play() if event.which == 32
-      )
-    @status.children('small').click (event)=>
+
+    $(document).one 'keypress', (event) =>
+      @play() if event.which == 32
+
+    @status.children('small').click (event) =>
       @play()
       event.preventDefault()
+
     @state   = 'TITLE_SCREEN'
     @enemies = {}
     @bombs = {}
@@ -17,11 +19,16 @@ class Game
     @addPlayer()
     @tick()
     @generateBullets()
-    @addEnemy '123', '418-418-4184'
 
-    setTimeout =>
-      @addBomb '123', 3
-    , 2000
+    [1..2].forEach (i) =>
+      setTimeout =>
+        @addEnemy i, "#{i}-418-1234"
+        @addBomb i, 2
+        # @addBomb i, this.random(1, 9)
+      , 1000 * (i*2)
+
+  random: (min, max) ->
+    min + (Math.random() * (max - min))
 
   play:->
     @hideStatus()
@@ -35,12 +42,12 @@ class Game
 
   addEnemy: (id,from)->
     @enemies[id] = new Enemy(from)
-    console.log "#{from} just connected!"
+    # console.log "#{from} just connected!"
 
   deleteEnemy: (id)->
     @enemies[id].elem.remove()
     delete @enemies[id]
-    console.log "#{@enemies[id].from} just disconnected!"
+    # console.log "#{@enemies[id].from} just disconnected!"
 
   addBomb: (id, zone)->
     enemy = @enemies[id]
@@ -49,41 +56,18 @@ class Game
     coord = Grid.getCoordinate(zone)
     enemy.addBomb(coord)
     @game.append enemy.bomb
+    enemy.bomb.on 'explodes', this.onBombExpldoes
 
-    console.log "#{enemy.from} added a bomb to (#{coord.x}, #{coord.y})!"
+  onBombExpldoes: (e, coord) =>
+
 
   deleteBomb: (id) ->
     enemy = @enemies[id]
     return unless enemy.bomb
 
-# <<<<<<< HEAD
-#   tick: =>
-#     unless @player.life <= 0
-#       for id,enemy of @enemies
-#         enemy.tick()
-#         continue unless enemy.canCollide()
-#         offset = enemy.elem.offset()
-#         if @player.collision(offset.left+Enemy.RADIUS/2,offset.top+Enemy.RADIUS/2)
-#           @player.life--
-#           enemy.elem.remove()
-#           enemy.hasMoved    = false
-#           enemy.currentZone = null
-#           @addEnemy '123', '418-418-4184'
-#           setTimeout =>
-#             @moveEnemy '123', 1
-#           , 2
-#       @player.tick()
-#     else
-#       @status.html """
-#         Gameover<br>
-#         <small>You made 999 points.</small>
-#       """
-#       @status.addClass('show')
-#       #LOOSE
-# =======
     enemy.bomb.remove()
     enemy.bomb = null
-    console.log "#{@enemies[id].from} bomb removed!"
+    # console.log "#{@enemies[id].from} bomb removed!"
 
   tick: =>
     for id, enemy of @enemies
@@ -96,21 +80,7 @@ class Game
       if @player.collision(left, top)
         enemy.defuse()
 
-    # for id,enemy of @enemies
-    #   enemy.tick()
-    #   continue unless enemy.canCollide()
-    #   offset = enemy.elem.offset()
-    #   if @player.collision(offset.left+Enemy.RADIUS/2,offset.top+Enemy.RADIUS/2)
-    #     @player.life--
-    #     enemy.elem.remove()
-    #     enemy.hasMoved    = false
-    #     enemy.currentZone = null
-    #     @addEnemy '123', '418-418-4184'
-    #     setTimeout =>
-    #       @moveEnemy '123', 1
-    #     , 2
     @player.tick()
-# >>>>>>> Update
     requestAnimationFrame(@tick)
 
   listen:->
@@ -127,5 +97,5 @@ class Game
           @addBomb(params.CallSid, params.Digits)
 
   generateBullets: ->
-    
+
 new Game

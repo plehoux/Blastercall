@@ -49,7 +49,7 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
   width: 100%
   margin: 0 auto
   overflow: hidden
-  
+
   #status
     z-index:999
     background-color: #fff
@@ -64,10 +64,10 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
     text-align: center
     text-transform: uppercase
     opacity: 0
-    transition: opacity .2s ease 
-    
+    transition: opacity .2s ease
+
     &.show { opacity: 1 }
-    
+
     small
       font-size: 24
       font-weight: lighter
@@ -76,7 +76,7 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
 
       span
         color:hotpink
-  
+
   .numpad
     size: 100%
     margin: 0 auto 0 auto
@@ -175,20 +175,15 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
     border-radius:100%
     background-color:white
 
-  // &:after
-  //   content: ''
-  //   display: block
-  //   position: absolute
-  //   top: 0; left: 0
-  //   width: 100%; height: 100%
-  //   border-radius: 100%
-  //   background-color: hotpink
-  // 
+  &:after
+    content: attr(data-from)
+    display: block
+
   &.explode
     opacity: 0
     -webkit-transform: scale(2)
     animation: explode .4s
-  
+
   &.defuse
     -webkit-transition: -webkit-transform .2s ease-in-out
     -webkit-transform: rotateY(180deg)
