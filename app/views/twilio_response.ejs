@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>        
-  <Response>
-    <<%- verb.capitalize() %> <%- typeof(nouns) == 'object' ? 'action="'+nouns.action+'" method="GET" timeout="'+nouns.timeout+'" numDigits="'+nouns.numDigits+'"':'' %>>
-      <% if (!(typeof(nouns) == 'object')){ %>
-        <%- nouns %>
-      <% } %>
-    </<%- verb.capitalize() %>>
-  </Response>
+<Response>
+  <Gather action="<%- nouns.action %>" method="GET" timeout="<%- nouns.timeout %>" numDigits="<%- nouns.numDigits %>">
+    <pause length="2"/>
+  </Gather>
+</Response>
