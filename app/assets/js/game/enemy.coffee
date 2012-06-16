@@ -46,7 +46,8 @@ class Enemy
   defuse: ->
     return unless @bomb
     clearInterval @timer
-
+    snd = new Audio "wave/defuse.wav"
+    snd.play()
     @bomb.addClass 'defuse'
 
 

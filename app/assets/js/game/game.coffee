@@ -22,6 +22,7 @@ class Game
 
     [1..20].forEach (i) =>
       setTimeout =>
+        console.log 2
         @addEnemy i, "#{i}-418-1234"
         @addBomb i, this.random(1, 9)
       , 1000 * i
