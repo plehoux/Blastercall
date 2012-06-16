@@ -44,7 +44,7 @@ class Enemy
       setTimeout this.explode, 250
 
   defuse: ->
-    return unless @bomb
+    return unless @bomb && !@bomb.hasClass('defuse')
     clearInterval @timer
     snd = new Audio "wave/defuse2.wav"
     snd.play()
