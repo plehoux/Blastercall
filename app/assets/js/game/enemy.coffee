@@ -31,7 +31,6 @@ class Enemy
     snd.play()
     @bomb.addClass 'explode'
     @bomb.trigger 'explodes', [@coord]
-    @bomb = null
 
   checkChainReaction: (coord) ->
     return if coord.x == @coord.x

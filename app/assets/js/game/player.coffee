@@ -8,13 +8,12 @@ class Player extends GameObject
     @speed = 0
     @keysPressed =
       left: false
-      up: false
       right: false
-      down: false
 
     @transform.x = (@window.width() / 4) - 50
     @transform.y = (@window.height() / 4) - 50
     @transform.rotation = 45
+
     $(document).on 'keydown', this.onKeyDown
     $(document).on 'keyup', this.onKeyUp
 
@@ -25,17 +24,15 @@ class Player extends GameObject
 
   # Keyboard management
   onKeyDown: (e) =>
-    return if [37, 38, 39].indexOf(e.keyCode) < 0
+    return if [37, 39].indexOf(e.keyCode) < 0
     switch e.keyCode
       when 37 then @keysPressed.left = true
-      when 38 then @keysPressed.up = true
       when 39 then @keysPressed.right = true
 
   onKeyUp: (e) =>
-    return if [37, 38, 39].indexOf(e.keyCode) < 0
+    return if [37, 39].indexOf(e.keyCode) < 0
     switch e.keyCode
       when 37 then @keysPressed.left = false
-      when 38 then @keysPressed.up = false
       when 39 then @keysPressed.right = false
 
   # Movement management
@@ -43,8 +40,6 @@ class Player extends GameObject
     this.turn(-1) if @keysPressed.left
     this.turn(1) if @keysPressed.right
     this.speedUp()
-    # this.speedUp() if @keysPressed.up
-    # this.speedDown() if !@keysPressed.up
     this.move()
     super()
 
@@ -72,13 +67,14 @@ class Player extends GameObject
     @transform.y = -50 if @transform.y > @window.height()
     @transform.y = @window.height() if @transform.y < -50
 
-  collision:(cx,cy)->
+  collision: (cx, cy, range=0) ->
     for i in Player.DETECTION_POINTS_NBR
       offset = @elem.children(".point_#{i}").offset()
       if offset?
         x = offset.left
         y = offset.top
-        collision = Math.sqrt((x-cx)*(x-cx)+(y-cy)*(y-cy)) < Enemy.BOMB_RADIUS / 2
+        distance = Math.sqrt((x-cx)*(x-cx)+(y-cy)*(y-cy))
+        collision = if range > 0 then (distance < 250) else (distance < Enemy.BOMB_RADIUS / 2)
       break if collision
     return collision
 

@@ -8,7 +8,7 @@ html
   font-size: 62.5%
   height: 100%
 
-html, body { size: 100% }
+html, body { size: 100%; overflow: hidden }
 
 body
   background-color: #4caf61
@@ -28,6 +28,10 @@ a:focus, a:link:hover  { color: hotpink }
 p, ul, ol, dl, blockquote, table, figure { margin: 0 }
 
 // Layout ----------------------------------------------------------------------
+.content
+  width: 100%; height: 100%
+  overflow: hidden
+
 #game
   position: absolute
   top: 80px; left: 0; right: 0; bottom: 0
