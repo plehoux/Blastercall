@@ -8,7 +8,7 @@ class Game
     $(document).keypress((event)=>
         @play() if event.which == 32
       )
-    $('#status').click (event)=>
+    $('#startgame').click (event)=>
         @play()
         event.preventDefault()
 

@@ -22,60 +22,54 @@ body, legend, input, textarea, button
   line-height: 1.4
   color: #333
 
-a:link, a:visited { color: deeppink }
+a:link, a:visited { color: #333; font-weight: 900 }
 a:focus, a:link:hover  { color: hotpink }
 
 p, ul, ol, dl, blockquote, table, figure { margin: 0 }
 
 // Layout ----------------------------------------------------------------------
-#ticker
-  background-color: #fff
-  size: 100% 80px
-  padding: 1em 0
-  color: #333
-  font-size: 24px
-  font-weight: bold
-  letter-spacing: 8px
-  text-align: center
-  text-transform: uppercase
-  word-spacing: .25em
-
-  strong
-    margin: 0 2em
-
 #game
   position: absolute
-  top: 80px; left: 0; right: 0; bottom: 0
+  top: 0; left: 0; right: 0; bottom: 0
   width: 100%
   margin: 0 auto
   overflow: hidden
-
+  
+  &.title_screen #status
+    opacity: 1 
+    top: 31%; left: 0
+  
   #status
     z-index:999
     background-color: #fff
+    display: block
     position: absolute
-    top: 31%; left: 0
+    top: -27%; left: 0
     width: 100%
-    padding: 1em 0
-    font-size: 72
-    font-weight: bold
-    letter-spacing: 15px
-    line-height: .75
+    max-height: 300px
+    padding: 2em 0
+    letter-spacing: .7em
+    line-height: 1
     text-align: center
     text-transform: uppercase
-    opacity: 0
-    transition: opacity .2s ease
-
-    &.show { opacity: 1 }
-
-    small
+    -webkit-transition: all .2s ease 
+    
+    h1
+      margin: 0
+      font-size: 30
+      font-weight: 800
+      
+    .tel
+      display: block
+      margin: .5em 0
+      font-size: 72
+      font-family: 'Futura Std', 'Helvetica Neue', sans-serif
+      font-weight: 300;
+    
+    #ticker
       font-size: 24
-      font-weight: lighter
-      letter-spacing: 8px
+      letter-spacing: 6px
       cursor: pointer
-
-      span
-        color:hotpink
 
   .numpad
     size: 100%
@@ -108,10 +102,8 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
       &:nth-child(3n)
         border-right: none
 
-
-
 // Player --------------------------------------------------------------------
-.player, .bomb
+.player,.enemy
   display: block
   position: absolute
   top: 0; left: 0
@@ -163,12 +155,14 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
     top:50%
     left:100%
 
+.enemy
+  size: 50px
+  line-height:50px
+  text-align:center
+  border-radius:100%
+  background-color:white
 
-.bomb
-  -webkit-backface-visibility: hidden
-
-  span
-    display: block
+  &.spawning
     size: 50px
     line-height:50px
     text-align:center
@@ -187,6 +181,8 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
   &.defuse
     -webkit-transition: -webkit-transform .2s ease-in-out
     -webkit-transform: rotateY(180deg)
+    background-color: rgba(0,0,0,.2)
+    span { display: none }
 
 // Keyframes --------------------------------------------------------------------
 @keyframes explode
