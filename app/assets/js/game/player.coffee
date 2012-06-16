@@ -1,10 +1,7 @@
-class Player
+class Player extends Object
 
   constructor: ->
-    @transform =
-      x: 0
-      y: 0
-      rotation: 0
+    super()
 
     @keysPressed =
       left: false
@@ -12,14 +9,12 @@ class Player
       right: false
       down: false
 
-    this.createElem()
-
     $(document).on 'keydown', this.onKeyDown
     $(document).on 'keyup', this.onKeyUp
 
   # DOM management
   createElem: ->
-    @elem = $('<span class="player"></span>')
+    super('player')
 
   # Keyboard management
   onKeyDown: (e) =>
