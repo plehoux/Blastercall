@@ -13,7 +13,7 @@ html, body { size: 100%; overflow: hidden }
 body
   background-color: #4caf61
   position: relative
-  font-family: 'Proxima Nova', 'Helvectica Neue', 'Helvetica', sans-serif;
+  font-family: 'proxima-nova', 'Helvectica Neue', 'Helvetica', sans-serif;
   font-size: 16
   animation: bgc 12s infinite alternate
   user-select: none
@@ -22,8 +22,12 @@ body, legend, input, textarea, button
   line-height: 1.4
   color: #333
 
-a:link, a:visited { color: #333; font-weight: 800 }
-a:focus, a:link:hover  { color: hotpink }
+a:link, a:visited
+  color: #4caf61
+  font-weight: 800 
+  animation: color 12s infinite alternate
+  span { color: #333 }
+a:focus, a:link:hover { color: #333 }
 
 p, ul, ol, dl, blockquote, table, figure { margin: 0 }
 
@@ -69,13 +73,16 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
       display: block
       margin: .5em 0
       font-size: 90
-      font-family: 'Futura Std', 'Helvetica Neue', sans-serif
+      font-family: 'futura-pt', 'Helvetica Neue', sans-serif
       font-weight: 200
+      animation: color 12s infinite alternate
     
     #ticker
       font-size: 24
       letter-spacing: 6px
       cursor: pointer
+      
+      a:hover span { color: inherit }
 
       #phoneNumber
         display:none
@@ -88,8 +95,8 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
 
     li
       position: relative
-      border-right: 1px solid rgba(255,255,255,.3)
-      border-bottom: 1px solid rgba(255,255,255,.3)
+      border-right: 1px solid rgba(0,0,0,.2)
+      border-bottom: 1px solid rgba(0,0,0,.2)
       display: block
       float: left
       width: 33.333333333333%
@@ -97,7 +104,7 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
       margin: 0
       color: rgba(0,0,0,.3)
       font-size: 120
-      font-family: 'Futura Std', inherit
+      font-family: 'futura-pt', inherit
       font-weight: 200
       text-align: center
       text-shadow: 0 1px 0 rgba(255,255,255,.1)
@@ -204,11 +211,21 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
 
 @keyframes bgc
   0%
-     background-color: #4caf61
+    background-color: #4caf61
   33%
     background-color: #4caeaf
   67%
     background-color: #994caf
   100%
     background-color: #af4c4c
+    
+@keyframes color
+  0%
+    color: #4caf61
+  33%
+    color: #4caeaf
+  67%
+    color: #994caf
+  100%
+    color: #af4c4c
 
