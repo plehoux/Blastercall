@@ -3,6 +3,8 @@ class Player extends GameObject
   constructor: ->
     super()
 
+    @window = $(window)
+    @speed = 0
     @keysPressed =
       left: false
       up: false
@@ -37,20 +39,41 @@ class Player extends GameObject
   tick: ->
     this.turn(-1) if @keysPressed.left
     this.turn(1) if @keysPressed.right
-    this.move(-1) if @keysPressed.up
+    this.speedUp() if @keysPressed.up
+    this.speedDown() if !@keysPressed.up
 
     this.setTransform()
+    this.move()
 
   turn: (increment) ->
-    @transform.rotation += increment * 3
+    @transform.rotation += increment * 8
+
+  speedUp: ->
+    if @speed >= 15
+      @speed = 15
+      return
+
+    @speed += .2
+
+  speedDown: ->
+    if @speed <=0
+      @speed = 0
+      return
+
+    @speed -= .1
 
   move: (increment) ->
-    console.log @transform.rotation
-    angle = @transform.rotation - 90
-    vectorX = Math.cos(angle * Math.PI/180)
-    vectorY = Math.sin(angle * Math.PI/180)
+    return if @speed == 0
+    angle = @transform.rotation
+    vectorX = Math.cos(angle * Math.PI/180) * @speed
+    vectorY = Math.sin(angle * Math.PI/180) * @speed
 
     @transform.x += vectorX
     @transform.y += vectorY
+
+    @transform.x = -20 if @transform.x > @window.width()
+    @transform.x = @window.width() if @transform.x < -20
+    @transform.y = -50 if @transform.y > @window.height()
+    @transform.y = @window.height() if @transform.y < -50
 
 window.Player = Player

@@ -29,14 +29,19 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
 
 // Player --------------------------------------------------------------------
 .player,.enemy
+  display: block
   position: absolute
   top: 0; left: 0
 
 .player
-  size: 42px 50px
-  background-color: hotpink
+  size: 0
+  border-top: 20px solid transparent
+  border-bottom: 20px solid transparent
+  border-left: 50px solid black
 
 .enemy
-  position:absolute
-  size: 50px 50px
+  size: 50px
   background-color: grey
+
+
+
