@@ -1,4 +1,4 @@
-class Player extends Object
+class Player extends Objectz
 
   constructor: ->
     super()
@@ -40,21 +40,20 @@ class Player extends Object
     this.move(-1) if @keysPressed.up
 
     this.setTransform()
-    console.log @transform.x, @transform.y
 
   turn: (increment) ->
     @transform.rotation += increment * 3
 
   move: (increment) ->
-    vectorX = Math.cos(@transform.rotation * Math.PI/180)
-    vectorY = Math.sin(@transform.rotation * Math.PI/180)
+    angle = @transform.rotation - 90
+    vectorX = Math.cos(angle * Math.PI/180)
+    vectorY = Math.sin(angle * Math.PI/180)
 
     @transform.x += vectorX
     @transform.y += vectorY
 
   setTransform: ->
-    @elem.css
-      '-webkit-transform': "rotate(#{@transform.rotation}deg) translate3d(#{@transform.x}px,#{@transform.y}px,0)"
+    # @elem.css '-webkit-transform': "translate3d(#{@transform.x}px, #{@transform.y}px, 0) rotate(#{@transform.rotation})"
 
 
 window.Player = Player

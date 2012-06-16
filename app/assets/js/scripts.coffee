@@ -1,3 +1,9 @@
+#= require_tree ./utils
+#= require ./game/object
+#= require ./game/enemy
+#= require ./game/player
+#= require ./game/game
+
 window.enemies = {}
 socket = io.connect "http://#{window.location.host}"
 socket.on 'action', (data) ->
@@ -18,9 +24,3 @@ socket.on 'action', (data) ->
     when 'move'
       enemies[params.CallSid].moveTo = params.Digits
       console.log enemies[params.CallSid].moveTo
-
-#= require_tree ./utils
-#= require ./game/object
-#= require ./game/enemy
-#= require ./game/player
-#= require ./game/game

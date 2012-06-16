@@ -1,4 +1,4 @@
-class Object
+class GameObject
   constructor:->
     @transform =
       x: 0
@@ -11,4 +11,4 @@ class Object
   createElem: (type)->
     @elem = $("<div class='#{type}'></div>")
 
-window.Object = Object
+window.GameObject = GameObject
