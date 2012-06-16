@@ -1,6 +1,6 @@
 class Player extends GameObject
   @DETECTION_POINTS_NBR = [1..11]
-  @NBR_OF_LIFE          = 3
+  @NBR_OF_LIFE          = 1
   constructor: ->
     super()
     @life = Player.NBR_OF_LIFE
@@ -52,8 +52,8 @@ class Player extends GameObject
     @transform.rotation += increment * 8
 
   speedUp: ->
-    if @speed >= 10
-      @speed = 10
+    if @speed >= 12
+      @speed = 12
       return
 
     @speed += .2

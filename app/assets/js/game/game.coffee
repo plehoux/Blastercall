@@ -4,12 +4,12 @@ class Game
   constructor: ->
     @game   = $('#game')
     @status = $('#status')
-    $(document).one('keypress',(event)=>
+    $(document).keypress((event)=>
         @play() if event.which == 32
       )
-    @status.children('small').click (event)=>
-      @play()
-      event.preventDefault()
+    $('#status').click (event)=>
+        @play()
+        event.preventDefault()
     @state   = 'TITLE_SCREEN'
     @enemies = {}
     @bombs = {}
@@ -24,7 +24,17 @@ class Game
     , 2000
 
   play:->
-    @hideStatus()
+    unless @state is "GAME_ON"
+      @state = "GAME_ON"
+      @hideStatus()
+
+  gameover:->
+    @state = "GAME_OVER"
+    @status.html """
+      Gameover<br>
+      <small>You made 999 points.</small>
+    """
+    @status.addClass('show')
 
   hideStatus:->
     @status.removeClass('show')
@@ -55,32 +65,6 @@ class Game
   deleteBomb: (id) ->
     enemy = @enemies[id]
     return unless enemy.bomb
-
-# <<<<<<< HEAD
-#   tick: =>
-#     unless @player.life <= 0
-#       for id,enemy of @enemies
-#         enemy.tick()
-#         continue unless enemy.canCollide()
-#         offset = enemy.elem.offset()
-#         if @player.collision(offset.left+Enemy.RADIUS/2,offset.top+Enemy.RADIUS/2)
-#           @player.life--
-#           enemy.elem.remove()
-#           enemy.hasMoved    = false
-#           enemy.currentZone = null
-#           @addEnemy '123', '418-418-4184'
-#           setTimeout =>
-#             @moveEnemy '123', 1
-#           , 2
-#       @player.tick()
-#     else
-#       @status.html """
-#         Gameover<br>
-#         <small>You made 999 points.</small>
-#       """
-#       @status.addClass('show')
-#       #LOOSE
-# =======
     enemy.bomb.remove()
     enemy.bomb = null
     console.log "#{@enemies[id].from} bomb removed!"
@@ -89,28 +73,12 @@ class Game
     for id, enemy of @enemies
       continue unless enemy.bomb
       offset = enemy.bomb.offset()
-
       left = offset.left + Enemy.BOMB_RADIUS / 2
       top = offset.top + Enemy.BOMB_RADIUS / 2
 
       if @player.collision(left, top)
         enemy.defuse()
-
-    # for id,enemy of @enemies
-    #   enemy.tick()
-    #   continue unless enemy.canCollide()
-    #   offset = enemy.elem.offset()
-    #   if @player.collision(offset.left+Enemy.RADIUS/2,offset.top+Enemy.RADIUS/2)
-    #     @player.life--
-    #     enemy.elem.remove()
-    #     enemy.hasMoved    = false
-    #     enemy.currentZone = null
-    #     @addEnemy '123', '418-418-4184'
-    #     setTimeout =>
-    #       @moveEnemy '123', 1
-    #     , 2
     @player.tick()
-# >>>>>>> Update
     requestAnimationFrame(@tick)
 
   listen:->
