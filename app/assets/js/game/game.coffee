@@ -7,6 +7,7 @@ class Game
     @listen()
     @addPlayer()
     @tick()
+    @generateBullets()
 
     @addEnemy '123', '418-418-4184'
 
@@ -20,11 +21,11 @@ class Game
     @game.append @player.elem
 
   addEnemy: (id,from)->
-    console.log "#{from} just connected!"
+    # console.log "#{from} just connected!"
     @enemies[id] = new Enemy(from)
 
   deleteEnemy: (id)->
-    console.log "#{@enemies[id].from} just disconnected!"
+    # console.log "#{@enemies[id].from} just disconnected!"
     @enemies[id].elem.remove()
     delete @enemies[id]
 
@@ -35,9 +36,9 @@ class Game
     if !enemy.hasMoved
       enemy.hasMoved = true
       @game.append enemy.elem
-
     enemy.moveTo(coord,zone)
     console.log "#{enemy.from} move to (#{coord.x}, #{coord.y})!"
+
 
   tick: =>
     for id,enemy of @enemies
@@ -68,5 +69,8 @@ class Game
           @deleteEnemy(params.CallSid)
         when 'move'
           @moveEnemy(params.CallSid,params.Digits)
+
+  generateBullets: ->
+    
 
 new Game

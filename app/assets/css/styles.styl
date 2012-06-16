@@ -11,10 +11,14 @@ html
 html, body { size: 100% }
 
 body
+  background-color: #4caf61
+  position: relative
+  font-family: 'Proxima Nova', 'Helvectica Neue', 'Helvetica', sans-serif;
   font-size: 16
+  animation: bgc 12s infinite alternate
+  user-select: none
 
 body, legend, input, textarea, button
-  font-family: 'Helvetica Neue'
   line-height: 1.4
   color: #333
 
@@ -23,12 +27,85 @@ a:focus, a:link:hover  { color: hotpink }
 
 p, ul, ol, dl, blockquote, table, figure { margin: 0 }
 
+// Layout ----------------------------------------------------------------------
+#ticker
+  background-color: #fff
+  size: 100% 80px
+  padding: 1em 0
+  color: #333
+  font-size: 24px
+  font-weight: bold
+  letter-spacing: 8px
+  text-align: center
+  text-transform: uppercase
+  word-spacing: .25em
+
+  strong
+    margin: 0 2em
+
+#game
+  position: absolute
+  top: 80px; left: 0; right: 0; bottom: 0
+  width: 100%
+  margin: 0 auto
+  overflow: hidden
+  
+  #status
+    background-color: #fff
+    position: absolute
+    top: 31%; left: 0
+    width: 100%
+    padding: 1em 0
+    font-size: 72
+    font-weight: bold
+    letter-spacing: 15px
+    line-height: .75
+    text-align: center
+    text-transform: uppercase
+    
+    small
+      font-size: 24
+      font-weight: lighter
+      letter-spacing: 8px
+  
+  .numpad
+    size: 100%
+    margin: 0 auto 0 auto
+    padding: 0
+    list-style: none
+
+    li
+      position: relative
+      border-right: 1px solid rgba(255,255,255,.5)
+      border-bottom: 1px solid rgba(255,255,255,.5)
+      display: block
+      float: left
+      width: 33.333333333333%
+      height: 33.333333333333%
+      margin: 0
+      color: rgba(0,0,0,.3)
+      font-size: 120
+      font-family: 'Futura Std', inherit
+      font-weight: 200
+      text-align: center
+      text-shadow: 0 1px 0 rgba(255,255,255,.1)
+
+      span
+        line-height: 0
+        position: absolute
+        top: 50%; left: 50%
+        margin-left: -30px
+
+      &:nth-child(3n)
+        border-right: none
+
+
+
 // Player --------------------------------------------------------------------
 .player,.enemy
   display: block
   position: absolute
   top: 0; left: 0
-  opacity:0.75
 
 .player
   size: 50px 40px
@@ -90,4 +167,14 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
     background-color: rgba(0,0,0,.2)
     span { display: none }
 
-@import "layout"
+// Keyframes --------------------------------------------------------------------
+@keyframes bgc
+  0%
+     background-color: #4caf61
+  33%
+    background-color: #4caeaf
+  67%
+    background-color: #994caf
+  100%
+    background-color: #af4c4c
+
