@@ -29,7 +29,7 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
   position: absolute
   top: 0; left: 0
   opacity:0.75
-  
+
 .player
   size: 0
   border-top: 20px solid transparent
@@ -41,7 +41,13 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
   size: 50px
   line-height:50px
   text-align:center
-  border-radius:25px
+  border-radius:100%
   background-color:white
+
+  &.spawning
+    size: 10px
+    margin: 20px 0 0 20px
+    background-color: rgba(0,0,0,.2)
+    span { display: none }
 
 @import "layout"

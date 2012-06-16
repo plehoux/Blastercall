@@ -11,6 +11,9 @@ class Player extends GameObject
       right: false
       down: false
 
+    @transform.x = (@window.width() / 2) - 50
+    @transform.y = (@window.height() / 2) - 50
+
     $(document).on 'keydown', this.onKeyDown
     $(document).on 'keyup', this.onKeyUp
 

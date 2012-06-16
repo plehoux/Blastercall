@@ -8,13 +8,22 @@ class Enemy extends GameObject
 
   # DOM management
   createElem: ->
-    super('enemy', @from.slice(-4))
+    super('enemy', "<span>#{@from.slice(-4)}</span>")
 
   moveTo: (coord) ->
+    @elem.addClass 'spawning'
+
+    setTimeout =>
+      @elem.removeClass 'spawning'
+    , 1000
+
     @transform.x = coord.x
     @transform.y = coord.y
 
   tick: ->
     super()
+
+  canCollide: ->
+    !@elem.hasClass 'spawning'
 
 window.Enemy = Enemy

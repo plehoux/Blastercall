@@ -8,6 +8,13 @@ class Game
     @addPlayer()
     @tick()
 
+    @addEnemy '123', '418-418-4184'
+    @moveEnemy '123', 3
+
+    # setTimeout =>
+      # @moveEnemy '123', 7
+    # , 6000
+
   addPlayer: ->
     @player = new Player
     @game.append @player.elem
@@ -30,7 +37,6 @@ class Game
       @game.append enemy.elem
 
     enemy.moveTo(coord)
-
     console.log "#{enemy.from} move to (#{coord.x}, #{coord.y})!"
 
   tick: =>
