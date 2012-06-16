@@ -12,7 +12,7 @@ class Game
         @play()
         event.preventDefault()
 
-    @state   = 'TITLE_SCREEN'
+    @changeGameState 'TITLE_SCREEN'
     @enemies = {}
     @bombs = {}
     @listen()
@@ -29,21 +29,21 @@ class Game
   random: (min, max) ->
     min + (Math.random() * (max - min))
 
+  changeGameState:(newState)->
+    @game.removeClass(@state.toLowerCase()) if @state
+    @state = newState
+    @game.addClass(newState.toLowerCase())
+
   play:->
     unless @state is "GAME_ON"
-      @state = "GAME_ON"
-      @hideStatus()
+      @changeGameState "GAME_ON"
 
   gameover:->
-    @state = "GAME_OVER"
+    @changeGameState "GAME_OVER"
     @status.html """
       Gameover<br>
       <small>You made 999 points.</small>
     """
-    @status.addClass('show')
-
-  hideStatus:->
-    @status.removeClass('show')
 
   addPlayer: ->
     @player = new Player
