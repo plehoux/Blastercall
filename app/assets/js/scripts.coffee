@@ -11,7 +11,8 @@ socket.on 'action', (data) ->
         from   : params.From
         x      : 0
         y      : 0
-        moveTo : null 
+        moveTo : null
+        name   : params.CallerName
     when 'disconnect'
       console.log "#{params.From} just disconnected!"
       delete enemies[params.CallSid]
