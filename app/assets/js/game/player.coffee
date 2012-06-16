@@ -22,20 +22,18 @@ class Player extends GameObject
 
   # Keyboard management
   onKeyDown: (e) =>
-    return if [37, 38, 39, 40].indexOf(e.keyCode) < 0
+    return if [37, 38, 39].indexOf(e.keyCode) < 0
     switch e.keyCode
       when 37 then @keysPressed.left = true
       when 38 then @keysPressed.up = true
       when 39 then @keysPressed.right = true
-      when 40 then @keysPressed.down = true
 
   onKeyUp: (e) =>
-    return if [37, 38, 39, 40].indexOf(e.keyCode) < 0
+    return if [37, 38, 39].indexOf(e.keyCode) < 0
     switch e.keyCode
       when 37 then @keysPressed.left = false
       when 38 then @keysPressed.up = false
       when 39 then @keysPressed.right = false
-      when 40 then @keysPressed.down = false
 
   # Movement management
   tick: ->

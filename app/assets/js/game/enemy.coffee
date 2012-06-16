@@ -10,6 +10,10 @@ class Enemy extends GameObject
   createElem: ->
     super('enemy',@from.slice(-4))
 
+  # moveTo: (coord) ->
+    # @transform.x = coord.x
+    # @transform.y = coord.y
+
   tick: ->
     super()
 
