@@ -9,6 +9,9 @@ class Game
     @tick()
     @addEnemy('asd','934-7234')
 
+    @addEnemy '123', '418-418-4184'
+    @moveEnemy '123', 3
+
   addPlayer: ->
     @player = new Player
     @game.append @player.elem
@@ -23,9 +26,8 @@ class Game
     @enemies[id].elem.remove()
     delete @enemies[id]
 
-
-  moveEnemy: (id,moveTo)->
-    @enemies[id].moveTo = moveTo
+  moveEnemy: (id, zone)->
+    @enemies[id].moveTo = Grid.getCoordinate(zone)
     console.log "#{@enemies[id].from} move to #{@enemies[id].moveTo}!"
 
   tick: =>
