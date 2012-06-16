@@ -18,5 +18,7 @@ socket.on 'action', (data) ->
     when 'move'
       enemies[params.CallSid].moveTo = params.Digits
       console.log enemies[params.CallSid].moveTo
+
 #= require_tree ./utils
+#= require ./game/player
 #= require ./game/game

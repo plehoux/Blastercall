@@ -8,6 +8,8 @@ html
   font-size: 62.5%
   height: 100%
 
+html, body { size: 100% }
+
 body
   font-size: 16
 
@@ -19,41 +21,32 @@ body, legend, input, textarea, button
 a:link, a:visited { color: deeppink }
 a:focus, a:link:hover  { color: hotpink }
 
-p, ul, ol, dl, blockquote, table, figure { margin: .8em 0 }
+p, ul, ol, dl, blockquote, table, figure { margin: 0 }
 
-// Headings ------------------------------------------------------------------
-hgroup > :first-child { margin-bottom: .3em }
-hgroup > :first-child + * { margin-top: .3em }
+// Game ----------------------------------------------------------------------
+#game
+  size: 100%
 
-h1, h2, h3, h4 { line-height: 1.1 }
+// Player --------------------------------------------------------------------
+.player
+  position: absolute
+  top: 0; left: 0
+  display: block
+  size: 25px
+  background-color: hotpink
+  border-radius: 100%
+  // border-left: 15px solid transparent
+  // border-right: 15px solid transparent
+  // border-bottom: 30px solid black
+  transform: rotate(360deg)
+  transform-origin: center center
 
-h1
-  color: #333
-  font-size: 32
-  margin: .7em 0
-
-h2
-  color: #333
-  font-size: 24
-  margin: .8em 0
-
-h3
-  color: #333
-  font-size: 19
-  margin: 1em 0
-
-h4
-  color: #333
-  font-size: 16
-  margin: 1.3em 0
-
-// Nav -----------------------------------------------------------------------
-nav
-  ul
-    padding: 0
-    font-size: 0
-  li
-    display: inline-block
-    font-size: 16
-  a
+  &:after
+    content: ''
     display: block
+    size: 4px
+    border-radius: 100%
+    position: absolute
+    top: 0; left: 50%
+    margin-left: -2px
+    background-color: #333
