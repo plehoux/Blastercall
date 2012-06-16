@@ -17,10 +17,6 @@ class ApplicationController
         switch type
           when 'enemy'
             if action is 'drop'
-              global.socket?.emit 'action',
-                type   : type
-                action : action
-                params : req.query
               @gather(req,res,type,action)
           when 'player'
             console.log 'player-move' if action is 'move'
