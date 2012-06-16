@@ -38,6 +38,8 @@ class Game
 
   play:->
     unless @state is "GAME_ON"
+      $("#startgame").hide()
+      $("#phoneNumber").show()
       @changeGameState "GAME_ON"
 
   gameover:->
