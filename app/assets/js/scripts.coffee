@@ -16,8 +16,7 @@ socket.on 'action', (data) ->
       console.log "#{params.From} just disconnected!"
       delete enemies[params.CallSid]
     when 'move'
-      console.log("#{k}:#{v}")for k,v of params
-      enemies[params.CallSid].moveTo = 2
+      enemies[params.CallSid].moveTo = params.Digits
       console.log enemies[params.CallSid].moveTo
 #= require_tree ./utils
 #= require ./game/game
