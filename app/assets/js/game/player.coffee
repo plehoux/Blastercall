@@ -1,4 +1,4 @@
-class Player extends Objectz
+class Player extends GameObject
 
   constructor: ->
     super()
