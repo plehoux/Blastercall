@@ -23,7 +23,6 @@ class Game
 
     [1..20].forEach (i) =>
       setTimeout =>
-        console.log 2
         @addEnemy i, "#{i}-418-1234"
         @addBomb i, this.random(1, 9)
       , 1000 * i
@@ -80,9 +79,8 @@ class Game
       continue unless enemy.bomb
       enemy.checkChainReaction coord
 
-    console.log @player.collision(coord.x, coord.y, 250)
-    # if @player.collision(coord.x, coord.y)
-      # console.log 'yaa!'
+    if @player.collision(coord.x, coord.y, 250)
+      @player.elem.addClass 'dead'
 
   deleteBomb: (id) ->
     enemy = @enemies[id]

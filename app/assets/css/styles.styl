@@ -24,7 +24,7 @@ body, legend, input, textarea, button
 
 a:link, a:visited
   color: #4caf61
-  font-weight: 800 
+  font-weight: 800
   animation: color 12s infinite alternate
   span { color: #333 }
 a:focus, a:link:hover { color: #333 }
@@ -41,14 +41,14 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
   top: 80px; left: 0; right: 0; bottom: 0
   width: 100%
   margin: 0 auto
-  
-  &.title_screen 
+
+  &.title_screen
     top: 0
     transition: top .2s ease-out
-  
+
     #status
       top: 230px; left: 0
-      
+
   #status
     z-index:999
     background-color: #fff
@@ -63,12 +63,12 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
     text-transform: uppercase
     opacity: 1
     transition: top .2s ease-out
-    
+
     h1
       margin: .25em  0 0 0
       font-size: 30
       font-weight: 800
-      
+
     .tel
       display: block
       margin: .5em 0
@@ -76,12 +76,12 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
       font-family: 'futura-pt', 'Helvetica Neue', sans-serif
       font-weight: 200
       animation: color 12s infinite alternate
-    
+
     #ticker
       font-size: 24
       letter-spacing: 6px
       cursor: pointer
-      
+
       a:hover span { color: inherit }
 
       #phoneNumber
@@ -131,45 +131,28 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
     border-top: 20px solid transparent
     border-bottom: 20px solid transparent
     border-left: 50px solid white
-    z-index:99
-    position:absolute
+    z-index: 99
+    position: absolute
+
+  &.dead
+    animation: flicker .1s infinite
+
   span
-    size:1px
-    display:block
-    position:absolute
-  .point_1
-    top:0
-    left:0
-  .point_2
-    top:50%
-    left:0
-  .point_3
-    top:100%
-    left:0
-  .point_4
-    top:25%
-    left:25%
-  .point_5
-    top:50%
-    left:25%
-  .point_6
-    top:75%
-    left:25%
-  .point_7
-    top:25%
-    left:50%
-  .point_8
-    top:50%
-    left:50%
-  .point_9
-    top:75%
-    left:50%
-  .point_10
-    top:50%
-    left:75%
-  .point_11
-    top:50%
-    left:100%
+    size: 1px
+    display: block
+    position: absolute
+
+  .point_1 { top:0; left:0 }
+  .point_2 { top:50%; left:0 }
+  .point_3 { top:100%; left:0 }
+  .point_4 { top:25%; left:25% }
+  .point_5 { top:50%; left:25% }
+  .point_6 { top:75%; left:25% }
+  .point_7 { top:25%; left:50% }
+  .point_8 { top:50%; left:50% }
+  .point_9 { top:75%; left:50% }
+  .point_10 { top:50%; left:75% }
+  .point_11 { top:50%; left:100% }
 
 .bomb
   -webkit-backface-visibility: hidden
@@ -197,6 +180,13 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
 
 
 // Keyframes --------------------------------------------------------------------
+@keyframes flicker
+  0%
+    opacity: 0
+
+  100%
+    opacity: 1
+
 @keyframes explode
   0%
     opacity: 1
@@ -218,7 +208,7 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
     background-color: #994caf
   100%
     background-color: #af4c4c
-    
+
 @keyframes color
   0%
     color: #4caf61
@@ -228,4 +218,3 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
     color: #994caf
   100%
     color: #af4c4c
-

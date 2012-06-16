@@ -7,7 +7,7 @@ class Enemy
 
   addBomb: (@coord) ->
     countdown = 3
-    @bomb = $("<div class='bomb' data-from='#{@from}'></div>")
+    @bomb = $("<div class='bomb' data-from='#{@from.slice(-4)}'></div>")
     span = $("<span>#{countdown}</span>")
 
     @bomb.append span
