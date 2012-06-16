@@ -6,7 +6,7 @@ class Enemy
     @bomb = null
 
   addBomb: (@coord) ->
-    countdown = 5
+    countdown = 3
     @bomb = $("<div class='bomb' data-from='#{@from}'></div>")
     span = $("<span>#{countdown}</span>")
 
@@ -25,6 +25,7 @@ class Enemy
     , 1000
 
   explode: =>
+    return unless @bomb
     clearInterval @timer
 
     @bomb.addClass 'explode'
@@ -39,12 +40,14 @@ class Enemy
     cy = coord.y
 
     distance = Math.sqrt((x-cx)*(x-cx)+(y-cy)*(y-cy))
-    if distance < 100
+    if distance < 250
       setTimeout this.explode, 250
 
   defuse: ->
-    @bomb.addClass 'defuse'
+    return unless @bomb
     clearInterval @timer
+
+    @bomb.addClass 'defuse'
 
 
 window.Enemy = Enemy

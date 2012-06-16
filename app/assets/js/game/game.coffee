@@ -65,9 +65,11 @@ class Game
     coord = Grid.getCoordinate(zone)
     enemy.addBomb(coord)
     @game.append enemy.bomb
-    enemy.bomb.on 'explodes', this.onBombExpldoes
+    enemy.bomb.on 'explodes', (e, coord) =>
+      # this.deleteBomb(id)
+      this.onBombExplodes(coord)
 
-  onBombExpldoes: (e, coord) =>
+  onBombExplodes: (coord) ->
     for id, enemy of @enemies
       continue unless enemy.bomb
       enemy.checkChainReaction coord
@@ -89,6 +91,7 @@ class Game
 
       if @player.collision(left, top)
         enemy.defuse()
+        # this.deleteBomb(id)
 
     @player.tick()
     requestAnimationFrame(@tick)
