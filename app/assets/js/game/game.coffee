@@ -52,7 +52,7 @@ class Game
     $("#startgame").show()
     $("#phoneNumber").hide()
     @player.life  = Player.NBR_OF_LIFE
-    @player.score = 0
+    @player.points = 0
     $('.lost').removeClass('lost')
     @score.html "score: 0"
 
