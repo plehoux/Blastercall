@@ -20,6 +20,8 @@ class Game
     @addPlayer()
     @tick()
     @generateBullets()
+    @score = $('#score')
+    @nbPlayers = $('#nb_players')
 
     [1..20].forEach (i) =>
       setTimeout =>
@@ -54,13 +56,15 @@ class Game
 
   addEnemy: (id,from)->
     @enemies[id] = new Enemy(from)
-    $('#nb_players').html(@ennemiesLength++)
+    @ennemiesLength++
+    @nbPlayers.html(@ennemiesLength)
     # console.log "#{from} just connected!"
 
   deleteEnemy: (id)->
     @enemies[id].elem.remove()
     delete @enemies[id]
-    $('#nb_players').html(@ennemiesLength--)
+    @ennemiesLength--
+    @nbPlayers.html(@ennemiesLength)
     # console.log "#{@enemies[id].from} just disconnected!"
 
   addBomb: (id, zone)->
@@ -101,9 +105,11 @@ class Game
       top = offset.top + Enemy.BOMB_RADIUS / 2
 
       if @player.collision(left, top) and !enemy.bomb.hasClass('defuse')
-        enemy.defuse() 
-        @player.points++
+        enemy.defuse()
         this.deleteBomb(id)
+        if @state == 'GAME_ON'
+          @player.points++
+          @score.html "Score: #{@player.points}"
 
     @player.tick()
     requestAnimationFrame(@tick)
