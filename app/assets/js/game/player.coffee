@@ -82,6 +82,7 @@ class Player extends GameObject
     return collision
 
   kill: ->
+    $('#life li').last()?.remove()
     @elem.addClass 'dead'
 
     setTimeout =>

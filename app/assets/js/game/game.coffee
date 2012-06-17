@@ -21,11 +21,11 @@ class Game
     @tick()
     @generateBullets()
 
-    # [1..20].forEach (i) =>
-    #   setTimeout =>
-    #     @addEnemy i, "#{i}-418-1234"
-    #     @addBomb i, this.random(1, 9)
-    #   , 1000 * i
+    [1..20].forEach (i) =>
+      setTimeout =>
+        @addEnemy i, "#{i}-418-1234"
+        @addBomb i, this.random(1, 9)
+      , 1000 * i
 
   random: (min, max) ->
     min + (Math.random() * (max - min))
