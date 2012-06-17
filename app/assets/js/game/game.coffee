@@ -23,11 +23,12 @@ class Game
     @score = $('#score')
     @nbPlayers = $('#nb_players')
 
-    # [1..20].forEach (i) =>
-    #   setTimeout =>
-    #     @addEnemy i, "#{i}-418-1234"
-    #     @addBomb i, this.random(1, 9)
-    #   , 1000 * i
+    [1..20].forEach (i) =>
+      setTimeout =>
+        @addEnemy i, "#{i}-418-1234"
+        @addBomb i, this.random(1, 9)
+        @deleteEnemy i
+      , 1000 * i
 
   random: (min, max) ->
     min + (Math.random() * (max - min))
@@ -67,9 +68,8 @@ class Game
     # console.log "#{from} just connected!"
 
   deleteEnemy: (id) ->
-    console.log @enemies[id]
-    #@enemies[id].elem.remove()
-    @enemies[id] = null
+    #console.log @enemies[id]
+    #@enemies[id] = null
     @ennemiesLength--
     @nbPlayers.html(@ennemiesLength)
     # console.log "#{@enemies[id].from} just disconnected!"
