@@ -10,8 +10,6 @@ class Player extends GameObject
     @keysPressed =
       left: false
       right: false
-    console.log $('#life') 
-    $('#life').append("<li id='life_#{i}'>*</li>") for i in [1..Player.NBR_OF_LIFE]
     @transform.x = (@window.width() / 4) - 50
     @transform.y = (@window.height() / 4) - 50
     @transform.rotation = 45
@@ -82,7 +80,7 @@ class Player extends GameObject
     return collision
 
   kill: ->
-    $('#life li').last()?.remove()
+    $('#life li').not('.lost').last()?.addClass('lost')
     @elem.addClass 'dead'
 
     setTimeout =>
