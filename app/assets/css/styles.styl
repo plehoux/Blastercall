@@ -42,8 +42,8 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
   width: 100%
   margin: 0 auto
   transition: top .4s ease-in-out
-
-  &.title_screen
+  
+  &.title_screen,&.game_over
     top: 0
 
     #status
@@ -68,6 +68,10 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
     opacity: 1
     transition: top .4s ease-in-out
 
+    strong.gameover
+      display:none
+      margin: 0.5em 0;
+
     #life
       display:none
       li 
@@ -78,7 +82,7 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
       font-size: 30
       font-weight: 800
 
-    .tel
+    .tel, .gameover
       display: block
       margin: .5em 0
       font-size: 90

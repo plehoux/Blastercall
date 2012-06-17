@@ -1,6 +1,6 @@
 class Player extends GameObject
   @DETECTION_POINTS_NBR = [1..11]
-  @NBR_OF_LIFE          = 3
+  @NBR_OF_LIFE          = 1
   constructor: ->
     super()
     @life        = Player.NBR_OF_LIFE
@@ -82,6 +82,7 @@ class Player extends GameObject
     return collision
 
   kill: ->
+    @life--
     $('#life li').last()?.remove()
     @elem.addClass 'dead'
 

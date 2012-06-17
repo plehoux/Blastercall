@@ -41,12 +41,18 @@ class Game
       $("#phoneNumber").show()
       @changeGameState "GAME_ON"
 
-  gameover:->
+  gameOver:->
     @changeGameState "GAME_OVER"
-    @status.html """
-      Gameover<br>
-      <small>You made 999 points.</small>
-    """
+    @status.children('h1.title').hide()
+    @status.children('strong.tel').hide()
+    @status.children('h1.score').html("score: #{@player.points}").show()
+    @status.children('strong.gameover').html("GAME OVER").css('display','block')
+    $("#startgame").show()
+    $("#phoneNumber").hide()
+    @player.life  = Player.NBR_OF_LIFE
+    @player.score = 0
+    $('.lost').removeClass('lost')
+    @score.html "score: 0"
 
   addPlayer: ->
     @player = new Player
@@ -78,7 +84,6 @@ class Game
     for id, enemy of @enemies
       continue unless enemy.bomb
       enemy.checkChainReaction coord
-
     if @player.collision(coord.x, coord.y, 250)
       @player.kill()
       # @player.elem.addClass 'dead'
@@ -106,6 +111,7 @@ class Game
         this.deleteBomb(id)
 
     @player.tick()
+    @gameOver() if @state is "GAME_ON" and @player.life <= 0
     requestAnimationFrame(@tick)
 
   listen:->
