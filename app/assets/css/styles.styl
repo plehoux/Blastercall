@@ -41,10 +41,10 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
   top: 80px; left: 0; right: 0; bottom: 0
   width: 100%
   margin: 0 auto
+  transition: top .4s ease-in-out
 
   &.title_screen
     top: 0
-    transition: top .2s ease-out
 
     #status
       top: 230px; left: 0
@@ -66,7 +66,7 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
     text-align: center
     text-transform: uppercase
     opacity: 1
-    transition: top .2s ease-out
+    transition: top .4s ease-in-out
 
     #life
       display:none
@@ -94,7 +94,8 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
       a:hover span { color: inherit }
 
       #phoneNumber
-        display:none
+        display:none  
+        font-weight: 800
         
   .numpad
     size: 100%
@@ -113,7 +114,7 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
       margin: 0
       color: rgba(0,0,0,.3)
       font-size: 120
-      font-family: 'futura-pt', inherit
+      font-family: 'futura-pt', 'Helvetica Neue', sans-serif
       font-weight: 200
       text-align: center
       text-shadow: 0 1px 0 rgba(255,255,255,.1)
@@ -144,7 +145,7 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
     position: absolute
 
   &.dead
-    animation: flicker .1s infinite
+    animation: flash .2s infinite
 
   span
     size: 1px
@@ -168,11 +169,16 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
 
   span
     display: block
+    position: relative
     size: 50px
-    line-height:50px
-    text-align:center
     border-radius:100%
     background-color:white
+    font-family: 'futura-pt', 'Helvetica Neue', sans-serif
+    font-size: 24
+    font-weight: bold;
+    line-height:50px
+    text-align:center
+    animation: bomb 4s alternate infinite
 
   &:after
     content: attr(data-from)
@@ -189,21 +195,18 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
 
 
 // Keyframes --------------------------------------------------------------------
-@keyframes flicker
-  0%
+@keyframes flash
+  0%, 49%
     opacity: 0
-
-  100%
+  50%, 100%
     opacity: 1
 
 @keyframes explode
   0%
     opacity: 1
     -webkit-transform: scale(1)
-
   25%
     -webkit-transform: scale(.5)
-
   100%
     opacity: 0
     -webkit-transform: scale(5)
@@ -227,3 +230,20 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
     color: #994caf
   100%
     color: #af4c4c
+    
+@keyframes bomb
+  0%
+    color: #333
+    top: 0; right: 0; 
+  80%, 85%, 90%, 95%
+    top: -2px; right: 0;
+  81%, 86%, 91%, 96%
+    top: 0; right: 2px;
+  82%, 87%, 92%, 97%
+    top: 2px; right: 2px;
+  83%, 88%, 93%, 98%
+    top: 0px; right: 4px;
+  84%, 89%, 94%, 99%
+    top: 2px; right: 2px;
+  100%
+    color: #e74444
