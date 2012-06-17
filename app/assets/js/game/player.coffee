@@ -69,6 +69,7 @@ class Player extends GameObject
     @transform.y = @window.height() if @transform.y < -50
 
   collision: (cx, cy, range=0) ->
+    return false if @elem.hasClass 'dead'
     for i in Player.DETECTION_POINTS_NBR
       offset = @elem.children(".point_#{i}").offset()
       if offset?
@@ -78,6 +79,13 @@ class Player extends GameObject
         collision = if range > 0 then (distance < 250) else (distance < Enemy.BOMB_RADIUS / 2)
       break if collision
     return collision
+
+  kill: ->
+    @elem.addClass 'dead'
+
+    setTimeout =>
+      @elem.removeClass 'dead'
+    , 1500
 
 
 window.Player = Player

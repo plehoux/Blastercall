@@ -80,7 +80,8 @@ class Game
       enemy.checkChainReaction coord
 
     if @player.collision(coord.x, coord.y, 250)
-      @player.elem.addClass 'dead'
+      @player.kill()
+      # @player.elem.addClass 'dead'
 
   deleteBomb: (id) ->
     enemy = @enemies[id]
