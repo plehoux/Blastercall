@@ -38,7 +38,7 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
 
 #game
   position: absolute
-  top: 80px; left: 0; right: 0; bottom: 0
+  top: 115px; left: 0; right: 0; bottom: 0
   width: 100%
   margin: 0 auto
   transition: top .4s ease-in-out
@@ -50,31 +50,54 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
       top: 230px; left: 0
 
   &.game_on
-    #status #life
-      display:block
+    #status .hub
+      visibility: visible
 
   #status
     z-index:999
     background-color: #fff
     display: block
     position: absolute
-    top: -333px; left: 0
+    top: -370px; left: 0
     width: 100%
-    padding: 2em 0
+    padding: 2em 0 4em
     letter-spacing: .7em
     line-height: 1
     text-align: center
     text-transform: uppercase
     opacity: 1
     transition: top .4s ease-in-out
+<<<<<<< HEAD
 
     strong.gameover
       display:none
       margin: 0.5em 0;
 
+=======
+    
+    .hub
+      visibility: hidden
+      position: absolute
+      top: 327px; left: 0;
+      width: 100%;
+      padding: 0 20.4%
+      letter-spacing: .3em
+      
+      span
+        float: left
+        font-weight: bold
+        animation: color 12s infinite alternate
+      
+>>>>>>> New hub
     #life
-      display: none
-      li { display: inline }
+      display: inline
+      float: right
+      
+      li 
+        display: inline
+        font-size: 12
+        animation: color 12s infinite alternate
+        
       li.lost { display: none }
 
     h1
@@ -187,11 +210,18 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
   &:after
     content: attr(data-from)
     display: block
+    color: #fff
+    font-weight: 800
+    font-family: 'futura-pt', 'Helvetica Neue', sans-serif
+    letter-spacing: .1em
+    text-align: center
 
   &.explode
     opacity: 0
     -webkit-transform: scale(2)
     animation: explode .4s
+    
+  &.explode:after { display: none }
 
   &.defuse
     -webkit-transition: -webkit-transform .2s ease-in-out
@@ -207,13 +237,13 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
 
 @keyframes explode
   0%
-    opacity: 1
-    -webkit-transform: scale(1)
-  25%
-    -webkit-transform: scale(.5)
+    opacity: .75
+    -webkit-transform: scale(5)
+  75%
+    -webkit-transform: scale(2)
   100%
     opacity: 0
-    -webkit-transform: scale(5)
+    -webkit-transform: scale(1)
 
 @keyframes bgc
   0%
