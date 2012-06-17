@@ -21,7 +21,7 @@ class Enemy
         this.explode()
       else
         countdown--
-        span.html countdown
+        span.html if countdown == 0 then '' else countdown
     , 1000
 
   explode: =>
