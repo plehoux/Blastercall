@@ -49,6 +49,10 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
     #status
       top: 230px; left: 0
 
+  &.game_on
+    #status #life
+      display:block
+
   #status
     z-index:999
     background-color: #fff
@@ -63,6 +67,11 @@ p, ul, ol, dl, blockquote, table, figure { margin: 0 }
     text-transform: uppercase
     opacity: 1
     transition: top .2s ease-out
+
+    #life
+      display:none
+      li 
+        display: inline
 
     h1
       margin: .25em  0 0 0

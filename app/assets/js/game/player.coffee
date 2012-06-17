@@ -1,6 +1,6 @@
 class Player extends GameObject
   @DETECTION_POINTS_NBR = [1..11]
-  @NBR_OF_LIFE          = 1
+  @NBR_OF_LIFE          = 3
   constructor: ->
     super()
     @life        = Player.NBR_OF_LIFE
@@ -10,7 +10,8 @@ class Player extends GameObject
     @keysPressed =
       left: false
       right: false
-
+    console.log $('#life') 
+    $('#life').append("<li id='life_#{i}'>*</li>") for i in [1..Player.NBR_OF_LIFE]
     @transform.x = (@window.width() / 4) - 50
     @transform.y = (@window.height() / 4) - 50
     @transform.rotation = 45
