@@ -66,9 +66,9 @@ class Game
     @nbPlayers.html(@ennemiesLength)
     # console.log "#{from} just connected!"
 
-  deleteEnemy: (id)->
+  deleteEnemy: (id) ->
     @enemies[id].elem.remove()
-    delete @enemies[id]
+    @enemies[id] = null
     @ennemiesLength--
     @nbPlayers.html(@ennemiesLength)
     # console.log "#{@enemies[id].from} just disconnected!"
